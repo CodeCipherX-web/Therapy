@@ -1,7 +1,7 @@
 // OpenRouter API integration for mental health chat
 // Get your API key from: https://openrouter.ai/keys
 
-const OPENROUTER_API_KEY = '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'; // Replace with your OpenRouter API key
+const OPENROUTER_API_KEY = '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'; // Replace with your OpenRouter API key
 const OPENROUTER_MODEL = 'openai/gpt-4o-mini'; // Default model, can be changed to any OpenRouter model
 
 const systemPrompt = `You are a compassionate and empathetic mental health support assistant. Your role is to:

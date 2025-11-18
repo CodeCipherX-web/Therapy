@@ -65,7 +65,7 @@ async function generateAIReply(text) {
           'HTTP-Referer': window.location.origin || 'https://tranquilmind.app'
         },
         body: JSON.stringify({
-          model: OPENROUTER_MODEL || 'openai/gpt-4o-mini',
+          model: OPENROUTER_MODEL || 'tngtech/deepseek-r1t2-chimera:free',
           messages: [
             {
               role: 'system',
@@ -96,18 +96,20 @@ async function generateAIReply(text) {
         }
         
         console.error('❌ OpenRouter API error:', response.status);
-        console.error('Error response:', errorData);
+        console.error('Error response:', JSON.stringify(errorData, null, 2));
         
         if (response.status === 401) {
           console.error('🔑 Authentication failed. Possible reasons:');
           console.error('   1. API key is invalid or expired');
           console.error('   2. API key has been revoked');
           console.error('   3. API key format is incorrect');
+          console.error('   4. API key has no credits/balance');
           console.error('💡 Get a new API key from: https://openrouter.ai/keys');
           console.error('💡 OpenRouter API keys typically start with "sk-or-"');
           console.error('💡 Current key (first 15 chars):', OPENROUTER_API_KEY ? `"${OPENROUTER_API_KEY.substring(0, 15)}..."` : 'key is empty');
+          console.error('💡 Current key length:', OPENROUTER_API_KEY ? OPENROUTER_API_KEY.length : 0);
           if (errorData.error) {
-            console.error('💡 API Error Message:', errorData.error);
+            console.error('💡 API Error Message:', typeof errorData.error === 'object' ? JSON.stringify(errorData.error, null, 2) : errorData.error);
           }
         }
         

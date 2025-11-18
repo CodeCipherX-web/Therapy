@@ -8,11 +8,11 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 // Get your API key from: https://openrouter.ai/keys
 // IMPORTANT: Do NOT commit this key to public repositories
 // NOTE: OpenRouter API keys typically start with "sk-or-"
-const OPENROUTER_API_KEY = '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'; // Replace with your actual OpenRouter API key
+const OPENROUTER_API_KEY = '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'; // Replace with your actual OpenRouter API key from https://openrouter.ai/keys
 
 // Model configuration for chat (OpenRouter supports many models)
 // Popular options: 'openai/gpt-4o-mini', 'anthropic/claude-3-haiku', 'google/gemini-pro', 'meta-llama/llama-3.1-8b-instruct'
-const OPENROUTER_MODEL = 'openai/gpt-4o-mini'; // Default model via OpenRouter
+const OPENROUTER_MODEL = 'tngtech/deepseek-r1t2-chimera:free'; // Using free DeepSeek model via OpenRouter
 const CHAT_SYSTEM_PROMPT = `You are a compassionate and empathetic mental health support assistant. Your role is to:
 - Listen actively and validate the user's feelings
 - Provide supportive guidance and coping strategies
