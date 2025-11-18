@@ -54,13 +54,15 @@ async function generateAIReply(text) {
   if (typeof OPENROUTER_API_KEY !== 'undefined' && OPENROUTER_API_KEY && OPENROUTER_API_KEY !== '') {
     try {
       console.log('🤖 Calling OpenRouter API...');
+      console.log('🔑 API Key (first 10 chars):', OPENROUTER_API_KEY.substring(0, 10) + '...');
       
       const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-          'X-Title': 'TranquilMind Chat Assistant'
+          'X-Title': 'TranquilMind Chat Assistant',
+          'HTTP-Referer': window.location.origin || 'https://tranquilmind.app'
         },
         body: JSON.stringify({
           model: OPENROUTER_MODEL || 'openai/gpt-4o-mini',
@@ -83,18 +85,30 @@ async function generateAIReply(text) {
         let errorData = {};
         let errorText = '';
         try {
-          errorText = await response.text();
-          errorData = JSON.parse(errorText);
+          errorText = await response.clone().text();
+          try {
+            errorData = JSON.parse(errorText);
+          } catch (e) {
+            errorData = { error: errorText, raw: errorText };
+          }
         } catch (e) {
-          errorData = { error: errorText || 'Unknown error' };
+          errorData = { error: 'Could not read error response' };
         }
         
-        console.error('❌ OpenRouter API error:', response.status, errorData);
+        console.error('❌ OpenRouter API error:', response.status);
+        console.error('Error response:', errorData);
         
         if (response.status === 401) {
-          console.error('🔑 Authentication failed. Please check your OpenRouter API key in config.js');
-          console.error('💡 Get your API key from: https://openrouter.ai/keys');
+          console.error('🔑 Authentication failed. Possible reasons:');
+          console.error('   1. API key is invalid or expired');
+          console.error('   2. API key has been revoked');
+          console.error('   3. API key format is incorrect');
+          console.error('💡 Get a new API key from: https://openrouter.ai/keys');
           console.error('💡 OpenRouter API keys typically start with "sk-or-"');
+          console.error('💡 Current key (first 15 chars):', OPENROUTER_API_KEY ? `"${OPENROUTER_API_KEY.substring(0, 15)}..."` : 'key is empty');
+          if (errorData.error) {
+            console.error('💡 API Error Message:', errorData.error);
+          }
         }
         
         return null;
