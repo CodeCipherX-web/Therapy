@@ -89,7 +89,7 @@ newbee/
 
 3. **Open the Application:**
 
-   **Important:** Use port 3000 to avoid conflicts with other applications.
+   **Important:** Use port 4000 to avoid conflicts with other applications.
 
    **Quick Start Options:**
 
@@ -101,7 +101,7 @@ newbee/
    npm run dev
    ```
 
-   Then open: **http://localhost:3000**
+   Then open: **http://localhost:4000**
 
    **Windows Users:** Double-click `start-server.bat` for easy startup.
 

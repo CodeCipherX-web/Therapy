@@ -3,6 +3,26 @@
 const SUPABASE_URL = 'https://rgdvmeljlxedhxnkmmgh.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnZHZtZWxqbHhlZGh4bmttbWdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzNzc0NzUsImV4cCI6MjA3Njk1MzQ3NX0.jUuZSVTXa9NeNAjVvI27SEx_D790I3NLiz1C5AC02mQ';
 
+// ========== AI/CHAT API Configuration ==========
+// OpenRouter API key for chat functionality
+// Get your API key from: https://openrouter.ai/keys
+// IMPORTANT: Do NOT commit this key to public repositories
+// NOTE: OpenRouter API keys typically start with "sk-or-"
+const OPENROUTER_API_KEY = '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'; // Replace with your actual OpenRouter API key
+
+// Model configuration for chat (OpenRouter supports many models)
+// Popular options: 'openai/gpt-4o-mini', 'anthropic/claude-3-haiku', 'google/gemini-pro', 'meta-llama/llama-3.1-8b-instruct'
+const OPENROUTER_MODEL = 'openai/gpt-4o-mini'; // Default model via OpenRouter
+const CHAT_SYSTEM_PROMPT = `You are a compassionate and empathetic mental health support assistant. Your role is to:
+- Listen actively and validate the user's feelings
+- Provide supportive guidance and coping strategies
+- Encourage professional help when needed
+- Never attempt to provide medical diagnosis or replace professional therapy
+- Maintain a warm, non-judgmental tone
+- Keep responses concise (2-3 sentences max for chat)
+- Focus on immediate support and wellness techniques`;
+
+
 // Initialize Supabase client
 // The UMD build from CDN exposes the library - wait for it to load
 let supabase;

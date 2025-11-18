@@ -6,7 +6,7 @@ If you're seeing a different website (like "Calmora") when accessing localhost, 
 
 ## Solution
 
-Use a specific port (3000) for your TranquilMind project.
+Use a specific port (4000) for your TranquilMind project.
 
 ## Quick Start Options
 
@@ -16,7 +16,7 @@ Use a specific port (3000) for your TranquilMind project.
 npm start
 ```
 
-Then open: **http://localhost:3000**
+Then open: **http://localhost:4000**
 
 ### Option 2: Using live-server (Auto-refresh)
 
@@ -24,7 +24,7 @@ Then open: **http://localhost:3000**
 npm run dev
 ```
 
-Then open: **http://localhost:3000**
+Then open: **http://localhost:4000**
 
 ### Option 3: Windows Batch File
 
@@ -36,25 +36,25 @@ Right-click `start-server.ps1` → Run with PowerShell
 
 ## Important URLs
 
-- **Home Page:** http://localhost:3000/index.html
-- **Mood Tracker:** http://localhost:3000/mood.html
-- **Chat:** http://localhost:3000/chat.html
-- **Journal:** http://localhost:3000/journal.html
-- **Resources:** http://localhost:3000/resources.html
-- **Helpline:** http://localhost:3000/helpline.html
+- **Home Page:** http://localhost:4000/index.html
+- **Mood Tracker:** http://localhost:4000/mood.html
+- **Chat:** http://localhost:4000/chat.html
+- **Journal:** http://localhost:4000/journal.html
+- **Resources:** http://localhost:4000/resources.html
+- **Helpline:** http://localhost:4000/helpline.html
 
 ## Troubleshooting
 
-### Port 3000 is already in use?
+### Port 4000 is already in use?
 
-Change the port in `package.json` to another number (e.g., 3002, 9000, 4000)
+Change the port in `package.json` to another number (e.g., 3002, 9000, 5000)
 
 ### Still seeing the wrong site?
 
 1. Clear your browser cache
 2. Use an incognito/private window
 3. Try a different browser
-4. Make sure you're accessing the correct port (3000)
+4. Make sure you're accessing the correct port (4000)
 
 ### npm not working?
 
