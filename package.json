@@ -1,0 +1,23 @@
+{
+  "name": "tranquilmind",
+  "version": "1.0.0",
+  "description": "TranquilMind — Mental Health Awareness & Support Platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "index.html",
+    "new":"index.html",
+    "dev": "npx live-server --port=3000 --open=index.html --no-browser"
+  },
+  "keywords": [
+    "mental-health",
+    "wellness",
+    "mood-tracker",
+    "journal",
+    "support"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}
+

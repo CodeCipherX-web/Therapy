@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resources & FAQ — TranquilMind</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2310b981;stop-opacity:1' /%3E%3Cstop offset='50%25' style='stop-color:%2334d399;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%233b82f6;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23bg)'/%3E%3Cpath d='M50 15 L42 35 L30 38 L45 50 L40 65 L50 58 L60 65 L55 50 L70 38 L58 35 Z' fill='white' opacity='0.95'/%3E%3Ccircle cx='50' cy='50' r='8' fill='white' opacity='0.8'/%3E%3Cpath d='M50 25 L46 40 L35 42 L48 50 L44 60 L50 55 L56 60 L52 50 L65 42 L54 40 Z' fill='url(%23bg)' opacity='0.3'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2310b981;stop-opacity:1' /%3E%3Cstop offset='50%25' style='stop-color:%2334d399;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%233b82f6;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23bg)'/%3E%3Cpath d='M50 15 L42 35 L30 38 L45 50 L40 65 L50 58 L60 65 L55 50 L70 38 L58 35 Z' fill='white' opacity='0.95'/%3E%3Ccircle cx='50' cy='50' r='8' fill='white' opacity='0.8'/%3E%3Cpath d='M50 25 L46 40 L35 42 L48 50 L44 60 L50 55 L56 60 L52 50 L65 42 L54 40 Z' fill='url(%23bg)' opacity='0.3'/%3E%3C/svg%3E">
+  
+  <!-- Poppins font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Supabase JS (browser) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="brand-mark">TM</div>
+        <div>
+          <div class="site-title">TranquilMind — Awareness & Support</div>
+          <div class="small">Safe. Private. Practical.</div>
+        </div>
+      </div>
+      <nav>
+        <button class="menu-tab" id="menuTab" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+          <span>Menu</span>
+        </button>
+        <div class="nav-menu" id="navMenu">
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="mood.html">
+            <i class="fas fa-smile"></i>
+            <span>Mood Tracker</span>
+          </a>
+          <a href="chat.html">
+            <i class="fas fa-comments"></i>
+            <span>Chat</span>
+          </a>
+          <a href="journal.html">
+            <i class="fas fa-book-open"></i>
+            <span>Journal</span>
+          </a>
+          <a href="resources.html" class="active">
+            <i class="fas fa-book"></i>
+            <span>Resources</span>
+          </a>
+          <a href="helpline.html">
+            <i class="fas fa-phone-alt"></i>
+            <span>Helpline</span>
+          </a>
+          <button class="cta" id="btnAuth">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Sign in</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <h1 class="page-title">Resources & Support</h1>
+
+    <section style="margin-bottom:32px">
+      <div class="card" style="margin-bottom:24px;padding:24px;display:grid;grid-template-columns:1fr 200px;gap:24px;align-items:center">
+        <div>
+          <h3>Emergency Contacts</h3>
+          <p>If you're in immediate danger or experiencing a mental health crisis, please contact:</p>
+          <ul style="margin:12px 0;padding-left:20px">
+            <li><strong>Kenya Crisis Line:</strong> +254 700 000 000 (example)</li>
+            <li><strong>Emergency Services:</strong> 999 or 112</li>
+            <li><strong>Mental Health Helpline:</strong> Check local resources</li>
+          </ul>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=200&h=200&fit=crop&q=80" alt="Mountain landscape" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow-md)" />
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=200&fit=crop&q=80" alt="Forest path" class="card-image" />
+          <h3>Self-Care Tips</h3>
+          <ul class="small" style="padding-left:20px">
+            <li>Practice deep breathing</li>
+            <li>Get regular exercise</li>
+            <li>Maintain a sleep schedule</li>
+            <li>Connect with others</li>
+            <li>Limit screen time</li>
+          </ul>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=200&fit=crop&q=80" alt="Mountain vista" class="card-image" />
+          <h3>Professional Help</h3>
+          <p class="small">Consider reaching out to:</p>
+          <ul class="small" style="padding-left:20px">
+            <li>Licensed therapists</li>
+            <li>Counselors</li>
+            <li>Support groups</li>
+            <li>Mental health clinics</li>
+          </ul>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1511497584788-876760111969?w=400&h=200&fit=crop&q=80" alt="Ocean waves" class="card-image" />
+          <h3>Online Resources</h3>
+          <ul class="small" style="padding-left:20px">
+            <li>Mental health articles</li>
+            <li>Meditation apps</li>
+            <li>Support communities</li>
+            <li>Educational materials</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section style="margin-bottom:32px">
+      <h2 class="page-title" style="font-size:20px;margin-bottom:16px"><i class="fas fa-book"></i> Helpful Articles</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Understanding Mental Health</h3>
+          <ul class="resource-list">
+            <li>
+              <a href="https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response" target="_blank" rel="noopener noreferrer" class="resource-link">
+                WHO: Mental Health Overview
+              </a>
+            </li>
+            <li>
+              <a href="https://www.nimh.nih.gov/health/topics" target="_blank" rel="noopener noreferrer" class="resource-link">
+                NIMH: Mental Health Topics
+              </a>
+            </li>
+            <li>
+              <a href="https://www.mhanational.org/conditions" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Mental Health America: Conditions
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Self-Care & Coping</h3>
+          <ul class="resource-list">
+            <li>
+              <a href="https://www.helpguide.org/articles/mental-health/building-better-mental-health.htm" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Building Better Mental Health
+              </a>
+            </li>
+            <li>
+              <a href="https://www.mind.org.uk/information-support/tips-for-everyday-living/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Mind: Tips for Everyday Living
+              </a>
+            </li>
+            <li>
+              <a href="https://www.psychologytoday.com/us/basics/stress" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Psychology Today: Stress Management
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Anxiety & Depression</h3>
+          <ul class="resource-list">
+            <li>
+              <a href="https://www.anxiety.org/what-is-anxiety" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Understanding Anxiety
+              </a>
+            </li>
+            <li>
+              <a href="https://www.nimh.nih.gov/health/publications/depression" target="_blank" rel="noopener noreferrer" class="resource-link">
+                NIMH: Depression Information
+              </a>
+            </li>
+            <li>
+              <a href="https://adaa.org/understanding-anxiety" target="_blank" rel="noopener noreferrer" class="resource-link">
+                ADAA: Anxiety Resources
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section style="margin-bottom:32px">
+      <h2 class="page-title" style="font-size:20px;margin-bottom:16px"><i class="fas fa-video"></i> Educational Videos</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Mental Health Basics</h3>
+          <ul class="resource-list">
+            <li>
+              <a href="https://www.youtube.com/watch?v=3QIfkeA6HBY" target="_blank" rel="noopener noreferrer" class="resource-link">
+                TED-Ed: What is Depression?
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=Z47hWx2S3zA" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Understanding Mental Health
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=4kC8v2nEDhM" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Mental Health Awareness
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Meditation & Mindfulness</h3>
+          <ul class="resource-list">
+            <li>
+              <a href="https://www.youtube.com/watch?v=U9YKY7fdwyg" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Headspace: Meditation Guide
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=6p_yaNFSYao" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Mindfulness for Beginners
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=ZToicYcHIOU" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Breathing Exercises
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Coping Strategies</h3>
+          <ul class="resource-list">
+            <li>
+              <a href="https://www.youtube.com/watch?v=1nB8hs4kwX8" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Coping with Stress
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=vo4pMVb0R6M" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Managing Anxiety
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=WwPAur7UFHg" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Self-Care Techniques
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Additional Resources -->
+    <section style="margin-bottom:32px">
+      <h2 class="page-title" style="font-size:20px;margin-bottom:16px"><i class="fas fa-link"></i> Additional Resources</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Apps & Tools</h3>
+          <ul class="resource-list">
+            <li>
+              <a href="https://www.headspace.com/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Headspace (Meditation)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.calm.com/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Calm (Sleep & Meditation)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.moodmeterapp.com/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Mood Meter (Emotion Tracking)
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Support Communities</h3>
+          <ul class="resource-list">
+            <li>
+              <a href="https://www.supportgroupscentral.com/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                Support Groups Central
+              </a>
+            </li>
+            <li>
+              <a href="https://www.7cups.com/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                7 Cups (Free Listening)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.reddit.com/r/mentalhealth/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                r/MentalHealth Community
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Research & Education</h3>
+          <ul class="resource-list">
+            <li>
+              <a href="https://www.nimh.nih.gov/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                National Institute of Mental Health
+              </a>
+            </li>
+            <li>
+              <a href="https://www.apa.org/topics" target="_blank" rel="noopener noreferrer" class="resource-link">
+                American Psychological Association
+              </a>
+            </li>
+            <li>
+              <a href="https://www.who.int/health-topics/mental-health" target="_blank" rel="noopener noreferrer" class="resource-link">
+                WHO Mental Health
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h3>Frequently Asked Questions</h3>
+      <div class="q">
+        How is my data stored?
+        <div class="a small" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid rgba(15,23,42,0.06)">
+          Your entries are stored in your Supabase project under the "mood_entries" and "chat_messages" tables. Only authenticated users can access their own entries. All data is encrypted and protected by Row Level Security policies.
+        </div>
+      </div>
+      <div class="q">
+        Can I delete my data?
+        <div class="a small" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid rgba(15,23,42,0.06)">
+          Yes — you can delete your account and all associated data. Contact support or use the account settings to manage your data. You have full control over your information.
+        </div>
+      </div>
+      <div class="q">
+        Is this a replacement for professional help?
+        <div class="a small" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid rgba(15,23,42,0.06)">
+          No. This tool is designed for self-tracking and general support. It is not a replacement for professional mental health care. If you're experiencing severe symptoms, please consult with a licensed mental health professional.
+        </div>
+      </div>
+      <div class="q">
+        How do I use the mood tracker?
+        <div class="a small" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid rgba(15,23,42,0.06)">
+          Simply rate your mood on a scale of 0-10, add an optional note about what influenced your mood, and save. You can view your history to track patterns over time. Sign in to save your entries.
+        </div>
+      </div>
+      <div class="q">
+        Is the chat assistant AI-powered?
+        <div class="a small" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid rgba(15,23,42,0.06)">
+          Currently, the chat uses simple pattern matching to provide supportive responses. In the future, this could be enhanced with AI capabilities through Supabase Edge Functions or third-party services.
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        <strong>TranquilMind</strong>
+        <div class="small">Built with care • Privacy-minded</div>
+      </div>
+      <div class="small">© <span id="year"></span></div>
+    </footer>
+  </div>
+
+  <!-- Auth modal -->
+  <div id="authModal">
+    <div>
+      <div class="auth-sidebar">
+        <div class="auth-icon"><i class="fas fa-leaf"></i></div>
+        <h2 id="sidebarTitle">Welcome Back</h2>
+        <p id="sidebarText">Sign in to continue your wellness journey</p>
+      </div>
+      <div class="auth-content">
+        <div class="auth-header">
+          <h3 id="authTitle">Sign in</h3>
+          <button class="close-btn" id="closeAuth"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="authError" class="auth-error"></div>
+        <div id="authSuccess" class="auth-success"></div>
+        <form class="auth-form" id="authForm">
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+            <input id="email" type="email" placeholder="your.email@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="password"><i class="fas fa-lock"></i> Password</label>
+            <input id="password" type="password" placeholder="Enter your password" required />
+          </div>
+          <div class="auth-actions">
+            <button type="submit" id="authAction" class="btn primary" style="width:100%">
+              <i class="fas fa-sign-in-alt"></i> Sign in
+            </button>
+            <button type="button" id="authSwitch" class="auth-switch">
+              Don't have an account? <strong>Sign up</strong>
+            </button>
+          </div>
+        </form>
+        <div class="auth-footer">
+          <p class="small"><i class="fas fa-shield-alt"></i> Your data is secure and private</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    // Menu tab toggle
+    const menuTab = document.getElementById('menuTab');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (menuTab && navMenu) {
+      menuTab.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menuTab.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !menuTab.contains(e.target)) {
+          menuTab.classList.remove('active');
+          navMenu.classList.remove('active');
+        }
+      });
+      
+      // Close menu when clicking on a link
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuTab.classList.remove('active');
+          navMenu.classList.remove('active');
+        });
+      });
+    }
+    
+    // FAQ accordion
+    document.querySelectorAll('.faq .q').forEach(q => {
+      q.addEventListener('click', () => {
+        const a = q.querySelector('.a');
+        a.style.display = (a.style.display === 'none' || a.style.display === '') ? 'block' : 'none';
+      });
+    });
+
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+

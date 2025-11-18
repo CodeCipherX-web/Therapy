@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Helpline & Crisis Support — TranquilMind</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2310b981;stop-opacity:1' /%3E%3Cstop offset='50%25' style='stop-color:%2334d399;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%233b82f6;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23bg)'/%3E%3Cpath d='M50 15 L42 35 L30 38 L45 50 L40 65 L50 58 L60 65 L55 50 L70 38 L58 35 Z' fill='white' opacity='0.95'/%3E%3Ccircle cx='50' cy='50' r='8' fill='white' opacity='0.8'/%3E%3Cpath d='M50 25 L46 40 L35 42 L48 50 L44 60 L50 55 L56 60 L52 50 L65 42 L54 40 Z' fill='url(%23bg)' opacity='0.3'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2310b981;stop-opacity:1' /%3E%3Cstop offset='50%25' style='stop-color:%2334d399;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%233b82f6;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23bg)'/%3E%3Cpath d='M50 15 L42 35 L30 38 L45 50 L40 65 L50 58 L60 65 L55 50 L70 38 L58 35 Z' fill='white' opacity='0.95'/%3E%3Ccircle cx='50' cy='50' r='8' fill='white' opacity='0.8'/%3E%3Cpath d='M50 25 L46 40 L35 42 L48 50 L44 60 L50 55 L56 60 L52 50 L65 42 L54 40 Z' fill='url(%23bg)' opacity='0.3'/%3E%3C/svg%3E">
+  
+  <!-- Poppins font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Supabase JS (browser) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="brand-mark">TM</div>
+        <div>
+          <div class="site-title">TranquilMind — Awareness & Support</div>
+          <div class="small">Safe. Private. Practical.</div>
+        </div>
+      </div>
+      <nav>
+        <button class="menu-tab" id="menuTab" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+          <span>Menu</span>
+        </button>
+        <div class="nav-menu" id="navMenu">
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="mood.html">
+            <i class="fas fa-smile"></i>
+            <span>Mood Tracker</span>
+          </a>
+          <a href="chat.html">
+            <i class="fas fa-comments"></i>
+            <span>Chat</span>
+          </a>
+          <a href="journal.html">
+            <i class="fas fa-book-open"></i>
+            <span>Journal</span>
+          </a>
+          <a href="resources.html">
+            <i class="fas fa-book"></i>
+            <span>Resources</span>
+          </a>
+          <a href="helpline.html" class="active">
+            <i class="fas fa-phone-alt"></i>
+            <span>Helpline</span>
+          </a>
+          <button class="cta" id="btnAuth">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Sign in</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <h1 class="page-title"><i class="fas fa-phone-alt"></i> Helpline & Crisis Support</h1>
+
+    <!-- Emergency Alert -->
+    <section style="margin-bottom:32px">
+      <div class="card" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; border: none; padding: 32px;">
+        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+          <i class="fas fa-exclamation-triangle" style="font-size: 32px;"></i>
+          <h2 style="margin: 0; color: white;">In Immediate Danger?</h2>
+        </div>
+        <p style="margin: 0 0 16px 0; font-size: 18px; line-height: 1.6;">
+          If you or someone you know is in immediate danger or experiencing a mental health crisis, please call emergency services right away.
+        </p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="tel:999" class="btn" style="background: white; color: #ef4444; border: none;">
+            <i class="fas fa-phone"></i> Call 999 (Emergency)
+          </a>
+          <a href="tel:112" class="btn" style="background: white; color: #ef4444; border: none;">
+            <i class="fas fa-phone"></i> Call 112 (Emergency)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Crisis Hotlines -->
+    <section style="margin-bottom:32px">
+      <h2 class="page-title" style="font-size:20px;margin-bottom:16px">
+        <i class="fas fa-life-ring"></i> Crisis Hotlines
+      </h2>
+      <div class="grid">
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div>
+              <h3 style="margin: 0;">National Suicide Prevention</h3>
+              <p class="small" style="margin: 4px 0 0 0; color: var(--text-secondary);">24/7 Support</p>
+            </div>
+          </div>
+          <p class="small" style="margin-bottom: 16px;">Free, confidential support for people in distress</p>
+          <a href="tel:988" class="btn primary" style="width: 100%;">
+            <i class="fas fa-phone"></i> Call 988
+          </a>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div>
+              <h3 style="margin: 0;">Crisis Text Line</h3>
+              <p class="small" style="margin: 4px 0 0 0; color: var(--text-secondary);">Text Support</p>
+            </div>
+          </div>
+          <p class="small" style="margin-bottom: 16px;">Text HOME to get immediate support via text message</p>
+          <a href="sms:741741" class="btn primary" style="width: 100%;">
+            <i class="fas fa-sms"></i> Text HOME to 741741
+          </a>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div>
+              <h3 style="margin: 0;">Mental Health Hotline</h3>
+              <p class="small" style="margin: 4px 0 0 0; color: var(--text-secondary);">24/7 Available</p>
+            </div>
+          </div>
+          <p class="small" style="margin-bottom: 16px;">Professional mental health support and resources</p>
+          <a href="tel:18002738255" class="btn primary" style="width: 100%;">
+            <i class="fas fa-phone"></i> Call 1-800-273-8255
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Regional Helplines -->
+    <section style="margin-bottom:32px">
+      <h2 class="page-title" style="font-size:20px;margin-bottom:16px">
+        <i class="fas fa-globe"></i> Regional Helplines
+      </h2>
+      <div class="grid">
+        <div class="card">
+          <h3><i class="fas fa-flag"></i> United States</h3>
+          <ul style="list-style: none; padding: 0; margin: 16px 0;">
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <strong>988 Suicide & Crisis Lifeline:</strong><br>
+              <a href="tel:988" style="color: var(--accent-1);">988</a> or <a href="tel:18002738255" style="color: var(--accent-1);">1-800-273-8255</a>
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <strong>Crisis Text Line:</strong><br>
+              Text <a href="sms:741741" style="color: var(--accent-1);">HOME to 741741</a>
+            </li>
+            <li style="padding: 8px 0;">
+              <strong>National Domestic Violence Hotline:</strong><br>
+              <a href="tel:18007997233" style="color: var(--accent-1);">1-800-799-7233</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3><i class="fas fa-flag"></i> United Kingdom</h3>
+          <ul style="list-style: none; padding: 0; margin: 16px 0;">
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <strong>Samaritans:</strong><br>
+              <a href="tel:116123" style="color: var(--accent-1);">116 123</a> (free, 24/7)
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <strong>Emergency Services:</strong><br>
+              <a href="tel:999" style="color: var(--accent-1);">999</a> or <a href="tel:112" style="color: var(--accent-1);">112</a>
+            </li>
+            <li style="padding: 8px 0;">
+              <strong>Mind Infoline:</strong><br>
+              <a href="tel:03001233393" style="color: var(--accent-1);">0300 123 3393</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3><i class="fas fa-flag"></i> Canada</h3>
+          <ul style="list-style: none; padding: 0; margin: 16px 0;">
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <strong>Crisis Services Canada:</strong><br>
+              <a href="tel:8334564566" style="color: var(--accent-1);">1-833-456-4566</a>
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <strong>Kids Help Phone:</strong><br>
+              <a href="tel:18006686868" style="color: var(--accent-1);">1-800-668-6868</a>
+            </li>
+            <li style="padding: 8px 0;">
+              <strong>Emergency Services:</strong><br>
+              <a href="tel:911" style="color: var(--accent-1);">911</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3><i class="fas fa-flag"></i> Australia</h3>
+          <ul style="list-style: none; padding: 0; margin: 16px 0;">
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <strong>Lifeline Australia:</strong><br>
+              <a href="tel:131114" style="color: var(--accent-1);">13 11 14</a> (24/7)
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <strong>Beyond Blue:</strong><br>
+              <a href="tel:1300224636" style="color: var(--accent-1);">1300 22 4636</a>
+            </li>
+            <li style="padding: 8px 0;">
+              <strong>Emergency Services:</strong><br>
+              <a href="tel:000" style="color: var(--accent-1);">000</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3><i class="fas fa-flag"></i> Kenya</h3>
+          <ul style="list-style: none; padding: 0; margin: 16px 0;">
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <strong>Emergency Services:</strong><br>
+              <a href="tel:999" style="color: var(--accent-1);">999</a> or <a href="tel:112" style="color: var(--accent-1);">112</a>
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <strong>Mental Health Support:</strong><br>
+              Contact local health facilities
+            </li>
+            <li style="padding: 8px 0;">
+              <strong>Nairobi Women's Hospital:</strong><br>
+              <a href="tel:254202720000" style="color: var(--accent-1);">+254 20 272 0000</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3><i class="fas fa-flag"></i> International</h3>
+          <ul style="list-style: none; padding: 0; margin: 16px 0;">
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <strong>International Crisis Text Line:</strong><br>
+              Text <a href="sms:741741" style="color: var(--accent-1);">HOME to 741741</a>
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <strong>Befrienders Worldwide:</strong><br>
+              <a href="https://www.befrienders.org" target="_blank" style="color: var(--accent-1);">Find local helpline</a>
+            </li>
+            <li style="padding: 8px 0;">
+              <strong>Emergency Services:</strong><br>
+              Check local emergency number
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specialized Support -->
+    <section style="margin-bottom:32px">
+      <h2 class="page-title" style="font-size:20px;margin-bottom:16px">
+        <i class="fas fa-hands-helping"></i> Specialized Support
+      </h2>
+      <div class="grid">
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <i class="fas fa-child" style="font-size: 24px; color: var(--accent-1);"></i>
+            <h3 style="margin: 0;">Youth & Teens</h3>
+          </div>
+          <ul class="small" style="padding-left: 20px; margin: 0;">
+            <li><strong>Kids Help Phone (Canada):</strong> <a href="tel:18006686868" style="color: var(--accent-1);">1-800-668-6868</a></li>
+            <li><strong>Teen Line (US):</strong> <a href="tel:18008528433" style="color: var(--accent-1);">1-800-852-8336</a></li>
+            <li><strong>Childline (UK):</strong> <a href="tel:08001111" style="color: var(--accent-1);">0800 1111</a></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <i class="fas fa-users" style="font-size: 24px; color: var(--accent-1);"></i>
+            <h3 style="margin: 0;">LGBTQ+ Support</h3>
+          </div>
+          <ul class="small" style="padding-left: 20px; margin: 0;">
+            <li><strong>Trevor Project (US):</strong> <a href="tel:18664887386" style="color: var(--accent-1);">1-866-488-7386</a></li>
+            <li><strong>Text Support:</strong> Text <a href="sms:678678" style="color: var(--accent-1);">START to 678678</a></li>
+            <li><strong>LGBT Foundation (UK):</strong> <a href="tel:03453303030" style="color: var(--accent-1);">0345 3 30 30 30</a></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <i class="fas fa-shield-alt" style="font-size: 24px; color: var(--accent-1);"></i>
+            <h3 style="margin: 0;">Domestic Violence</h3>
+          </div>
+          <ul class="small" style="padding-left: 20px; margin: 0;">
+            <li><strong>National DV Hotline (US):</strong> <a href="tel:18007997233" style="color: var(--accent-1);">1-800-799-7233</a></li>
+            <li><strong>Refuge (UK):</strong> <a href="tel:08082000247" style="color: var(--accent-1);">0808 2000 247</a></li>
+            <li><strong>Emergency:</strong> <a href="tel:999" style="color: var(--accent-1);">999</a> or <a href="tel:911" style="color: var(--accent-1);">911</a></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <i class="fas fa-user-md" style="font-size: 24px; color: var(--accent-1);"></i>
+            <h3 style="margin: 0;">Substance Abuse</h3>
+          </div>
+          <ul class="small" style="padding-left: 20px; margin: 0;">
+            <li><strong>SAMHSA (US):</strong> <a href="tel:18006624357" style="color: var(--accent-1);">1-800-662-4357</a></li>
+            <li><strong>Addiction Helpline (UK):</strong> <a href="tel:08007776677" style="color: var(--accent-1);">0800 777 6677</a></li>
+            <li><strong>24/7 Support Available</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Online Support -->
+    <section style="margin-bottom:32px">
+      <h2 class="page-title" style="font-size:20px;margin-bottom:16px">
+        <i class="fas fa-laptop"></i> Online Support Resources
+      </h2>
+      <div class="grid">
+        <div class="card">
+          <h3><i class="fas fa-comments"></i> Chat Support</h3>
+          <p class="small">Get immediate help through online chat services</p>
+          <ul class="small" style="padding-left: 20px;">
+            <li><a href="https://www.crisistextline.org" target="_blank" style="color: var(--accent-1);">Crisis Text Line</a></li>
+            <li><a href="https://www.samaritans.org" target="_blank" style="color: var(--accent-1);">Samaritans (UK)</a></li>
+            <li><a href="https://www.7cups.com" target="_blank" style="color: var(--accent-1);">7 Cups (Free listeners)</a></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3><i class="fas fa-mobile-alt"></i> Mobile Apps</h3>
+          <p class="small">Download apps for on-the-go support</p>
+          <ul class="small" style="padding-left: 20px;">
+            <li><strong>Calm:</strong> Meditation & sleep</li>
+            <li><strong>Headspace:</strong> Mindfulness training</li>
+            <li><strong>Mood Meter:</strong> Emotion tracking</li>
+            <li><strong>Wysa:</strong> AI mental health support</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3><i class="fas fa-user-friends"></i> Support Groups</h3>
+          <p class="small">Connect with others who understand</p>
+          <ul class="small" style="padding-left: 20px;">
+            <li><a href="https://www.nami.org" target="_blank" style="color: var(--accent-1);">NAMI Support Groups</a></li>
+            <li><a href="https://www.supportgroupscentral.com" target="_blank" style="color: var(--accent-1);">Support Groups Central</a></li>
+            <li><a href="https://www.meetup.com" target="_blank" style="color: var(--accent-1);">Local Meetup Groups</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Important Notice -->
+    <section style="margin-bottom:32px">
+      <div class="card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%); border: 2px solid var(--accent-1);">
+        <h3 style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <i class="fas fa-info-circle" style="color: var(--accent-1);"></i>
+          Important Information
+        </h3>
+        <ul class="small" style="padding-left: 20px; margin: 0;">
+          <li>All helplines are confidential and free to use</li>
+          <li>Most services are available 24/7</li>
+          <li>If you're in immediate danger, call emergency services (999, 911, or 112)</li>
+          <li>These numbers are provided for informational purposes - please verify current numbers in your area</li>
+          <li>For non-emergency mental health support, consider speaking with a therapist or counselor</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        <strong>TranquilMind</strong>
+        <div class="small">Built with care • Privacy-minded</div>
+      </div>
+      <div class="small">© <span id="year"></span></div>
+    </footer>
+  </div>
+
+  <!-- Auth modal -->
+  <div id="authModal">
+    <div>
+      <div class="auth-sidebar">
+        <div class="auth-icon"><i class="fas fa-leaf"></i></div>
+        <h2 id="sidebarTitle">Welcome Back</h2>
+        <p id="sidebarText">Sign in to continue your wellness journey</p>
+      </div>
+      <div class="auth-content">
+        <div class="auth-header">
+          <h3 id="authTitle">Sign in</h3>
+          <button class="close-btn" id="closeAuth"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="authError" class="auth-error"></div>
+        <div id="authSuccess" class="auth-success"></div>
+        <form class="auth-form" id="authForm">
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+            <input id="email" type="email" placeholder="your.email@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="password"><i class="fas fa-lock"></i> Password</label>
+            <input id="password" type="password" placeholder="Enter your password" required />
+          </div>
+          <div class="auth-actions">
+            <button type="submit" id="authAction" class="btn primary" style="width:100%">
+              <i class="fas fa-sign-in-alt"></i> Sign in
+            </button>
+            <button type="button" id="authSwitch" class="auth-switch">
+              Don't have an account? <strong>Sign up</strong>
+            </button>
+          </div>
+        </form>
+        <div class="auth-footer">
+          <p class="small"><i class="fas fa-shield-alt"></i> Your data is secure and private</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    // Menu tab toggle
+    const menuTab = document.getElementById('menuTab');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (menuTab && navMenu) {
+      menuTab.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menuTab.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !menuTab.contains(e.target)) {
+          menuTab.classList.remove('active');
+          navMenu.classList.remove('active');
+        }
+      });
+      
+      // Close menu when clicking on a link
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuTab.classList.remove('active');
+          navMenu.classList.remove('active');
+        });
+      });
+    }
+    
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
