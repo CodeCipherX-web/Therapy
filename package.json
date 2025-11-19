@@ -4,8 +4,9 @@
   "description": "TranquilMind — Mental Health Awareness & Support Platform",
   "main": "index.html",
   "scripts": {
-    "start": "npx serve . -p 4000",
-    "dev": "npx live-server --port=4000 --open=index.html --no-browser"
+    "start": "npm run load-env && npx serve . -p 4000",
+    "dev": "npm run load-env && npx live-server --port=4000 --open=index.html --no-browser",
+    "load-env": "node load-env.js"
   },
   "keywords": [
     "mental-health",
@@ -15,8 +16,5 @@
     "support"
   ],
   "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "@google/genai": "^1.30.0"
-  }
+  "license": "MIT"
 }

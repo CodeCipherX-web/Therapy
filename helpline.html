@@ -425,6 +425,8 @@
     </div>
   </div>
 
+  <!-- Load environment variables from .env file (if available) -->
+  <script src="config.env.js" onerror="console.log('ℹ️ config.env.js not found - using defaults from config.js')"></script>
   <script src="config.js"></script>
   <script src="auth.js"></script>
   <script>

@@ -1,18 +1,53 @@
-// ========== CONFIG: fill these from your Supabase project (do NOT commit keys publicly) ===========
-// Supabase credentials
-const SUPABASE_URL = 'https://rgdvmeljlxedhxnkmmgh.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnZHZtZWxqbHhlZGh4bmttbWdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzNzc0NzUsImV4cCI6MjA3Njk1MzQ3NX0.jUuZSVTXa9NeNAjVvI27SEx_D790I3NLiz1C5AC02mQ';
+// ========== CONFIG: Load from .env file ===========
+// Environment variables are loaded from config.env.js (generated from .env file)
+// Run: node load-env.js to generate config.env.js from .env
+// If config.env.js doesn't exist, fallback to these default values
+
+// Try to load from config.env.js first (generated from .env file)
+let envConfig = {};
+
+if (typeof window !== 'undefined' && window.ENV_CONFIG) {
+  // Load from generated config.env.js
+  envConfig = window.ENV_CONFIG;
+}
+
+// ========== CONFIG: Supabase credentials ==========
+const SUPABASE_URL = envConfig.SUPABASE_URL || 'https://rgdvmeljlxedhxnkmmgh.supabase.co';
+const SUPABASE_ANON_KEY = envConfig.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnZHZtZWxqbHhlZGh4bmttbWdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzNzc0NzUsImV4cCI6MjA3Njk1MzQ3NX0.jUuZSVTXa9NeNAjVvI27SEx_D790I3NLiz1C5AC02mQ';
 
 // ========== AI/CHAT API Configuration ==========
 // OpenRouter API key for chat functionality
 // Get your API key from: https://openrouter.ai/keys
-// IMPORTANT: Do NOT commit this key to public repositories
+// IMPORTANT: Store your API key in .env file (OPENROUTER_API_KEY)
 // NOTE: OpenRouter API keys typically start with "sk-or-"
-const OPENROUTER_API_KEY = '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'; // Replace with your actual OpenRouter API key from https://openrouter.ai/keys
+const OPENROUTER_API_KEY = envConfig.OPENROUTER_API_KEY || '';
+const OPENROUTER_MODEL = envConfig.OPENROUTER_MODEL || 'tngtech/deepseek-r1t2-chimera:free';
+const SITE_URL = envConfig.SITE_URL || 'https://tranquilmind.app';
 
-// Model configuration for chat (OpenRouter supports many models)
-// Popular options: 'openai/gpt-4o-mini', 'anthropic/claude-3-haiku', 'google/gemini-pro', 'meta-llama/llama-3.1-8b-instruct'
-const OPENROUTER_MODEL = 'tngtech/deepseek-r1t2-chimera:free'; // Using free DeepSeek model via OpenRouter
+// Debug: Log API key status (first few chars only for security)
+if (typeof window !== 'undefined') {
+  console.log('🔑 API Configuration loaded:', {
+    hasApiKey: !!OPENROUTER_API_KEY,
+    apiKeyPrefix: OPENROUTER_API_KEY ? OPENROUTER_API_KEY.substring(0, 10) + '...' : 'NOT SET',
+    apiKeyLength: OPENROUTER_API_KEY ? OPENROUTER_API_KEY.length : 0,
+    model: OPENROUTER_MODEL,
+    loadedFromEnv: !!envConfig.OPENROUTER_API_KEY,
+    envConfigExists: !!window.ENV_CONFIG,
+    envConfigKey: window.ENV_CONFIG ? (window.ENV_CONFIG.OPENROUTER_API_KEY ? 'EXISTS' : 'MISSING') : 'NO ENV_CONFIG'
+  });
+  
+  // Force check - make sure the key is actually set
+  if (!OPENROUTER_API_KEY || OPENROUTER_API_KEY === '') {
+    console.error('❌❌❌ CRITICAL: OPENROUTER_API_KEY is empty or not set!');
+    console.error('This will cause fallback responses to be used.');
+    console.error('Check: .env file has OPENROUTER_API_KEY set');
+    console.error('Check: Run "npm run load-env" to regenerate config.env.js');
+    console.error('Check: config.env.js is loaded before config.js in HTML');
+  } else {
+    console.log('✅ OPENROUTER_API_KEY is set and ready to use');
+  }
+}
+
 const CHAT_SYSTEM_PROMPT = `You are a compassionate and empathetic mental health support assistant. Your role is to:
 - Listen actively and validate the user's feelings
 - Provide supportive guidance and coping strategies

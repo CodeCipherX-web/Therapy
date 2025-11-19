@@ -50,26 +50,38 @@ function removeTypingIndicator() {
 }
 
 async function generateAIReply(text) {
+  // Debug: Check if API key is available
+  const hasApiKey = typeof OPENROUTER_API_KEY !== 'undefined' && OPENROUTER_API_KEY && OPENROUTER_API_KEY !== '';
+  
+  console.log('🔍 Checking API key...', {
+    keyDefined: typeof OPENROUTER_API_KEY !== 'undefined',
+    keyValue: OPENROUTER_API_KEY ? OPENROUTER_API_KEY.substring(0, 15) + '...' : 'empty',
+    keyLength: OPENROUTER_API_KEY ? OPENROUTER_API_KEY.length : 0,
+    hasApiKey: hasApiKey,
+    model: OPENROUTER_MODEL
+  });
+  
   // Try to use OpenRouter API if key is configured
-  if (typeof OPENROUTER_API_KEY !== 'undefined' && OPENROUTER_API_KEY && OPENROUTER_API_KEY !== '') {
+  if (hasApiKey) {
     try {
       console.log('🤖 Calling OpenRouter API...');
       console.log('🔑 API Key (first 10 chars):', OPENROUTER_API_KEY.substring(0, 10) + '...');
       
+      console.log('📡 Making fetch request to OpenRouter...');
       const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
           'X-Title': 'TranquilMind Chat Assistant',
-          'HTTP-Referer': window.location.origin || 'https://tranquilmind.app'
+          'HTTP-Referer': SITE_URL || window.location.origin || 'https://tranquilmind.app'
         },
         body: JSON.stringify({
           model: OPENROUTER_MODEL || 'tngtech/deepseek-r1t2-chimera:free',
           messages: [
             {
               role: 'system',
-              content: CHAT_SYSTEM_PROMPT || 'You are a compassionate mental health support assistant.'
+              content: CHAT_SYSTEM_PROMPT || 'You are a compassionate mental health support assistant. You are talking to a client who is feeling sad and lonely. You are trying to help them feel better and find a way to cope with their feelings.speak in a friendly and supportive tone, almost like your a friend.'
             },
             {
               role: 'user',
@@ -81,6 +93,8 @@ async function generateAIReply(text) {
         })
       });
 
+      console.log('📥 Response received, status:', response.status, response.statusText);
+      
       if (!response.ok) {
         let errorData = {};
         let errorText = '';
@@ -95,8 +109,10 @@ async function generateAIReply(text) {
           errorData = { error: 'Could not read error response' };
         }
         
-        console.error('❌ OpenRouter API error:', response.status);
+        console.error('❌❌❌ OpenRouter API ERROR:', response.status);
+        console.error('Status Text:', response.statusText);
         console.error('Error response:', JSON.stringify(errorData, null, 2));
+        console.error('This will cause fallback to be used!');
         
         if (response.status === 401) {
           console.error('🔑 Authentication failed. Possible reasons:');
@@ -122,18 +138,30 @@ async function generateAIReply(text) {
       if (data.choices && data.choices[0] && data.choices[0].message) {
         const reply = data.choices[0].message.content;
         console.log('💬 AI Reply:', reply);
-        return reply;
+        console.log('✅ Successfully got AI reply from OpenRouter');
+        return reply.trim(); // Return trimmed reply
       } else {
         console.warn('⚠️ Unexpected response format:', data);
+        console.warn('Response structure:', JSON.stringify(data, null, 2));
         return null;
       }
     } catch (error) {
       console.error('❌ Error calling OpenRouter API:', error);
-      console.error('Error details:', error.message, error.stack);
+      console.error('Error details:', error.message);
+      console.error('Error stack:', error.stack);
+      console.error('This error will cause fallback to be used');
       return null;
     }
   } else {
-    console.log('ℹ️ OpenRouter API key not configured. Using fallback responses. Configure OPENROUTER_API_KEY in config.js for AI responses.');
+    console.error('❌ OpenRouter API key not configured!');
+    console.error('Key status:', {
+      undefined: typeof OPENROUTER_API_KEY === 'undefined',
+      empty: OPENROUTER_API_KEY === '',
+      falsy: !OPENROUTER_API_KEY,
+      value: OPENROUTER_API_KEY ? 'has value' : 'no value'
+    });
+    console.error('💡 Make sure OPENROUTER_API_KEY is set in .env file and run: npm run load-env');
+    console.error('💡 Current OPENROUTER_API_KEY:', OPENROUTER_API_KEY);
   }
   
   return null;
@@ -267,9 +295,15 @@ async function sendChatMessage() {
     await new Promise(resolve => setTimeout(resolve, 800));
     
     // Generate bot reply - try AI API first, fall back to enhanced responses
+    console.log('🚀 Attempting to get AI reply from OpenRouter...');
     let reply = await generateAIReply(text);
-    if (!reply) {
+    if (!reply || reply.trim() === '') {
+      console.warn('⚠️ AI API failed or returned no reply, using fallback response');
+      console.warn('⚠️ This means OpenRouter is NOT being used');
       reply = generateSupportiveReply(text);
+    } else {
+      console.log('✅✅✅ SUCCESS: Using AI-generated reply from OpenRouter');
+      console.log('✅ Reply length:', reply.length, 'characters');
     }
     
     removeTypingIndicator();
@@ -290,9 +324,13 @@ async function sendChatMessage() {
     console.error('Error sending chat message:', error);
     removeTypingIndicator();
     // Still show the message even if save fails
+    console.log('🚀 Attempting to get AI reply from OpenRouter (error recovery)...');
     let reply = await generateAIReply(text);
-    if (!reply) {
+    if (!reply || reply.trim() === '') {
+      console.warn('⚠️ AI API failed, using fallback response');
       reply = generateSupportiveReply(text);
+    } else {
+      console.log('✅ Using AI-generated reply from OpenRouter (error recovery)');
     }
     appendMessage('bot', reply);
   }
