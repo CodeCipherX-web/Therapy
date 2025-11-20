@@ -89,7 +89,8 @@ async function generateAIReply(text) {
             }
           ],
           max_tokens: 200,
-          temperature: 0.7
+          temperature: 0.7,
+          stream: false
         })
       });
 
@@ -135,11 +136,39 @@ async function generateAIReply(text) {
       const data = await response.json();
       console.log('✅ OpenRouter API response received:', data);
       
-      if (data.choices && data.choices[0] && data.choices[0].message) {
-        const reply = data.choices[0].message.content;
-        console.log('💬 AI Reply:', reply);
-        console.log('✅ Successfully got AI reply from OpenRouter');
-        return reply.trim(); // Return trimmed reply
+      if (data.choices && data.choices[0]) {
+        const choice = data.choices[0];
+        const finishReason = choice.finish_reason;
+        console.log('📊 Finish reason:', finishReason);
+        
+        if (choice.message && choice.message.content) {
+          const reply = choice.message.content;
+          console.log('💬 AI Reply (raw):', JSON.stringify(reply));
+          console.log('💬 AI Reply (type):', typeof reply);
+          console.log('💬 AI Reply (length):', reply ? reply.length : 'null/undefined');
+          
+          // Check if reply is valid and non-empty
+          if (reply && typeof reply === 'string' && reply.trim().length > 0) {
+            const trimmedReply = reply.trim();
+            console.log('✅ Successfully got AI reply from OpenRouter');
+            console.log('✅ Reply length:', trimmedReply.length, 'characters');
+            return trimmedReply;
+          } else {
+            console.warn('⚠️ AI Reply is empty or invalid');
+            console.warn('⚠️ Reply value:', reply);
+            console.warn('⚠️ Finish reason:', finishReason);
+            if (finishReason === 'length') {
+              console.warn('⚠️ Response was cut off due to max_tokens limit');
+            }
+            console.warn('⚠️ Full choice object:', JSON.stringify(choice, null, 2));
+            return null;
+          }
+        } else {
+          console.warn('⚠️ No message content in response');
+          console.warn('⚠️ Choice object:', JSON.stringify(choice, null, 2));
+          console.warn('⚠️ Finish reason:', finishReason);
+          return null;
+        }
       } else {
         console.warn('⚠️ Unexpected response format:', data);
         console.warn('Response structure:', JSON.stringify(data, null, 2));
