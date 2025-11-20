@@ -16,11 +16,29 @@ const SUPABASE_URL = envConfig.SUPABASE_URL || 'https://rgdvmeljlxedhxnkmmgh.sup
 const SUPABASE_ANON_KEY = envConfig.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnZHZtZWxqbHhlZGh4bmttbWdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzNzc0NzUsImV4cCI6MjA3Njk1MzQ3NX0.jUuZSVTXa9NeNAjVvI27SEx_D790I3NLiz1C5AC02mQ';
 
 // ========== AI/CHAT API Configuration ==========
-// NOTE: OpenRouter API key is handled by Node.js backend (backend-chat.js)
+// NOTE: OpenRouter API key is handled by Node.js backend (backend-chat.js) or Supabase Edge Function
 // The API key is NOT exposed to the frontend for security
-// Backend URL - Use Node.js backend server (default: localhost:3001)
-// Make sure to run: npm run backend (or: node backend-chat.js)
-const BACKEND_CHAT_URL = envConfig.BACKEND_CHAT_URL || 'http://localhost:3001';
+// Backend URL - Auto-detect based on environment
+// - Local development: http://localhost:3001 (Node.js backend)
+// - Production: Supabase Edge Function or configured BACKEND_CHAT_URL
+let BACKEND_CHAT_URL = envConfig.BACKEND_CHAT_URL;
+
+// Auto-detect environment and set backend URL
+if (!BACKEND_CHAT_URL) {
+  // Check if we're on localhost (development)
+  if (typeof window !== 'undefined' && 
+      (window.location.hostname === 'localhost' || 
+       window.location.hostname === '127.0.0.1' ||
+       window.location.hostname === '')) {
+    // Local development - use Node.js backend
+    BACKEND_CHAT_URL = 'http://localhost:3001';
+  } else {
+    // Production - use Supabase Edge Function
+    // Supabase Edge Function URL format: {SUPABASE_URL}/functions/v1/chat
+    BACKEND_CHAT_URL = SUPABASE_URL.replace('/rest/v1', '/functions/v1/chat');
+  }
+}
+
 const OPENROUTER_MODEL = envConfig.OPENROUTER_MODEL || 'tngtech/deepseek-r1t2-chimera:free';
 const SITE_URL = envConfig.SITE_URL || 'https://tranquilmind.app';
 

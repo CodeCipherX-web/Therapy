@@ -51,10 +51,15 @@ function removeTypingIndicator() {
 
 async function generateAIReply(text) {
   // Backend proxy URL - get from config.js
-  // BACKEND_CHAT_URL is defined in config.js and should be 'http://localhost:3001'
+  // BACKEND_CHAT_URL is defined in config.js
+  // - Local: http://localhost:3001 (Node.js backend)
+  // - Production: Supabase Edge Function URL
   const BACKEND_URL = (typeof BACKEND_CHAT_URL !== 'undefined' && BACKEND_CHAT_URL) 
     ? BACKEND_CHAT_URL 
-    : 'http://localhost:3001';
+    : (typeof window !== 'undefined' && 
+       (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))
+    ? 'http://localhost:3001'
+    : 'https://rgdvmeljlxedhxnkmmgh.supabase.co/functions/v1/chat';
   
   try {
     console.log('🤖 Calling backend chat API at:', BACKEND_URL);
