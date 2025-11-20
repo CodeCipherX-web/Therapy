@@ -16,36 +16,27 @@ const SUPABASE_URL = envConfig.SUPABASE_URL || 'https://rgdvmeljlxedhxnkmmgh.sup
 const SUPABASE_ANON_KEY = envConfig.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnZHZtZWxqbHhlZGh4bmttbWdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzNzc0NzUsImV4cCI6MjA3Njk1MzQ3NX0.jUuZSVTXa9NeNAjVvI27SEx_D790I3NLiz1C5AC02mQ';
 
 // ========== AI/CHAT API Configuration ==========
-// OpenRouter API key for chat functionality
-// Get your API key from: https://openrouter.ai/keys
-// IMPORTANT: Store your API key in .env file (OPENROUTER_API_KEY)
-// NOTE: OpenRouter API keys typically start with "sk-or-"
-const OPENROUTER_API_KEY = envConfig.OPENROUTER_API_KEY || '';
+// NOTE: OpenRouter API key is handled by Node.js backend (backend-chat.js)
+// The API key is NOT exposed to the frontend for security
+// Backend URL - Use Node.js backend server (default: localhost:3001)
+// Make sure to run: npm run backend (or: node backend-chat.js)
+const BACKEND_CHAT_URL = envConfig.BACKEND_CHAT_URL || 'http://localhost:3001';
 const OPENROUTER_MODEL = envConfig.OPENROUTER_MODEL || 'tngtech/deepseek-r1t2-chimera:free';
 const SITE_URL = envConfig.SITE_URL || 'https://tranquilmind.app';
 
-// Debug: Log API key status (first few chars only for security)
+// Debug: Log configuration status
 if (typeof window !== 'undefined') {
   console.log('🔑 API Configuration loaded:', {
-    hasApiKey: !!OPENROUTER_API_KEY,
-    apiKeyPrefix: OPENROUTER_API_KEY ? OPENROUTER_API_KEY.substring(0, 10) + '...' : 'NOT SET',
-    apiKeyLength: OPENROUTER_API_KEY ? OPENROUTER_API_KEY.length : 0,
+    backendUrl: BACKEND_CHAT_URL,
     model: OPENROUTER_MODEL,
-    loadedFromEnv: !!envConfig.OPENROUTER_API_KEY,
-    envConfigExists: !!window.ENV_CONFIG,
-    envConfigKey: window.ENV_CONFIG ? (window.ENV_CONFIG.OPENROUTER_API_KEY ? 'EXISTS' : 'MISSING') : 'NO ENV_CONFIG'
+    siteUrl: SITE_URL,
+    envConfigExists: !!window.ENV_CONFIG
   });
   
-  // Force check - make sure the key is actually set
-  if (!OPENROUTER_API_KEY || OPENROUTER_API_KEY === '') {
-    console.error('❌❌❌ CRITICAL: OPENROUTER_API_KEY is empty or not set!');
-    console.error('This will cause fallback responses to be used.');
-    console.error('Check: .env file has OPENROUTER_API_KEY set');
-    console.error('Check: Run "npm run load-env" to regenerate config.env.js');
-    console.error('Check: config.env.js is loaded before config.js in HTML');
-  } else {
-    console.log('✅ OPENROUTER_API_KEY is set and ready to use');
-  }
+  console.log('ℹ️ OpenRouter API key is handled by Node.js backend (backend-chat.js)');
+  console.log('ℹ️ Backend URL:', BACKEND_CHAT_URL);
+  console.log('💡 Make sure backend server is running: npm run backend');
+  console.log('💡 Or: node backend-chat.js');
 }
 
 const CHAT_SYSTEM_PROMPT = `You are a compassionate and empathetic mental health support assistant. Your role is to:

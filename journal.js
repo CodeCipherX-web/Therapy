@@ -35,39 +35,78 @@ async function saveJournal() {
     }
 
     const userId = session.user.id;
+    console.log('Saving journal entry for user:', userId);
+
+    // Normalize folder name
+    const normalizedFolder = folder.toLowerCase().trim().replace(/\s+/g, '-') || 'general';
 
     const journalData = {
       user_id: userId,
       title: title,
       content: content,
-      folder: folder
+      folder: normalizedFolder
     };
 
     let error;
+    let savedData;
     if (currentJournalId) {
       // Update existing journal
-      const { error: updateError } = await supabase
+      console.log('Updating journal:', currentJournalId);
+      const { data, error: updateError } = await supabase
         .from('journals')
         .update(journalData)
         .eq('id', currentJournalId)
-        .eq('user_id', userId);
+        .eq('user_id', userId)
+        .select();
       error = updateError;
+      savedData = data;
     } else {
       // Create new journal
-      const { error: insertError } = await supabase
+      console.log('Creating new journal entry');
+      const { data, error: insertError } = await supabase
         .from('journals')
-        .insert([journalData]);
+        .insert([journalData])
+        .select();
       error = insertError;
+      savedData = data;
     }
 
     if (error) {
-      console.error(error);
-      alert('Failed to save journal.');
+      console.error('Supabase insert/update error:', error);
+      console.error('Error details:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      });
+      
+      // Provide more helpful error messages
+      let errorMsg = 'Failed to save journal. ';
+      if (error.code === 'PGRST116' || error.message?.includes('table') || error.message?.includes('not found') || error.message?.includes('schema cache')) {
+        errorMsg += 'The journals table does not exist in your Supabase database.\n\n';
+        errorMsg += 'SOLUTION: Run the SQL from JOURNAL_DATABASE_SETUP.md in your Supabase SQL Editor to create the table.';
+      } else if (error.code === '42501') {
+        errorMsg += 'Permission denied. Please check Row Level Security policies in Supabase.';
+      } else if (error.message) {
+        errorMsg += error.message;
+      } else {
+        errorMsg += 'Please try again or check the browser console for details.';
+      }
+      
+      alert(errorMsg);
       return;
+    }
+
+    if (!savedData || (Array.isArray(savedData) && savedData.length === 0)) {
+      console.warn('Save succeeded but no data returned');
+      // Continue anyway as the save might have worked
+    } else {
+      console.log('Journal saved successfully:', Array.isArray(savedData) ? savedData[0] : savedData);
     }
   } catch (error) {
     console.error('Error saving journal:', error);
-    alert('An unexpected error occurred. Please try again.');
+    console.error('Error stack:', error.stack);
+    alert(`An unexpected error occurred: ${error.message || 'Unknown error'}. Please check the console for details.`);
     return;
   }
 
@@ -471,11 +510,15 @@ function initJournal() {
   loadJournals();
   loadFolders();
   
-  // Check for auth state changes
-  supabase.auth.onAuthStateChange(() => {
-    loadJournals(currentFolder);
-    loadFolders();
-  });
+  // Check for auth state changes (only if supabase is initialized)
+  if (supabase) {
+    supabase.auth.onAuthStateChange(() => {
+      loadJournals(currentFolder);
+      loadFolders();
+    });
+  } else {
+    console.warn('⚠️ Supabase not initialized. Auth state changes will not be tracked.');
+  }
 }
 
 // Initialize when DOM is ready
