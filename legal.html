@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Legal — Privacy Policy & Terms of Service — TranquilMind</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23a855f7;stop-opacity:1'/%3E%3Cstop offset='50%25' style='stop-color:%23ec4899;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%23f59e0b;stop-opacity:1'/%3E%3C/linearGradient%3E%3ClinearGradient id='grad2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23fbbf24;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%23f97316;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23grad1)'/%3E%3Ccircle cx='50' cy='50' r='32' fill='url(%23grad2)' opacity='0.9'/%3E%3Cpath d='M50 25 L45 40 L30 42 L42 50 L38 62 L50 56 L62 62 L58 50 L70 42 L55 40 Z' fill='white' opacity='0.95'/%3E%3Ccircle cx='50' cy='50' r='12' fill='white' opacity='0.8'/%3E%3Cpath d='M50 32 L47 42 L37 43 L45 50 L42 58 L50 54 L58 58 L55 50 L63 43 L53 42 Z' fill='url(%23grad1)' opacity='0.4'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23a855f7;stop-opacity:1'/%3E%3Cstop offset='50%25' style='stop-color:%23ec4899;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%23f59e0b;stop-opacity:1'/%3E%3C/linearGradient%3E%3ClinearGradient id='grad2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23fbbf24;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%23f97316;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23grad1)'/%3E%3Ccircle cx='50' cy='50' r='32' fill='url(%23grad2)' opacity='0.9'/%3E%3Cpath d='M50 25 L45 40 L30 42 L42 50 L38 62 L50 56 L62 62 L58 50 L70 42 L55 40 Z' fill='white' opacity='0.95'/%3E%3Ccircle cx='50' cy='50' r='12' fill='white' opacity='0.8'/%3E%3Cpath d='M50 32 L47 42 L37 43 L45 50 L42 58 L50 54 L58 58 L55 50 L63 43 L53 42 Z' fill='url(%23grad1)' opacity='0.4'/%3E%3C/svg%3E">
+  
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Supabase JS (browser) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .legal-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0;
+    }
+    .legal-tab {
+      padding: 12px 24px;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: all 0.3s ease;
+      position: relative;
+      bottom: -2px;
+    }
+    .legal-tab:hover {
+      color: var(--text);
+    }
+    .legal-tab.active {
+      color: #6366f1;
+      border-bottom-color: #6366f1;
+    }
+    .legal-content {
+      display: none;
+    }
+    .legal-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="brand-mark">TM</div>
+        <div>
+          <div class="site-title">TranquilMind — Awareness & Support</div>
+          <div class="small">Safe. Private. Practical.</div>
+        </div>
+      </div>
+      <nav>
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <i class="fas fa-moon" id="darkModeIcon"></i>
+        </button>
+        <button class="menu-tab" id="menuTab" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+          <span>Menu</span>
+        </button>
+        <div class="nav-menu" id="navMenu">
+          <div class="user-info" id="userInfo" style="display:none">
+            <div class="user-info-card">
+              <div class="user-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="user-details">
+                <div class="user-username" id="userUsername">Loading...</div>
+                <div class="user-email" id="userEmail">Loading...</div>
+                <div class="user-id" id="userId">ID: Loading...</div>
+              </div>
+            </div>
+          </div>
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="mood.html">
+            <i class="fas fa-smile"></i>
+            <span>Mood Tracker</span>
+          </a>
+          <a href="chat.html">
+            <i class="fas fa-comments"></i>
+            <span>Chat</span>
+          </a>
+          <a href="journal.html">
+            <i class="fas fa-book-open"></i>
+            <span>Journal</span>
+          </a>
+          <a href="resources.html">
+            <i class="fas fa-book"></i>
+            <span>Resources</span>
+          </a>
+          <a href="testing.html">
+            <i class="fas fa-chart-line"></i>
+            <span>Testing Results</span>
+          </a>
+          <button class="cta" id="btnAuth">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Sign in</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main style="max-width:900px;margin:0 auto;padding:clamp(24px,5vw,48px) clamp(16px,4vw,32px)">
+      <div class="card" style="padding:clamp(32px,6vw,48px)">
+        <h1 style="margin:0 0 16px 0;font-size:clamp(28px,5vw,36px);color:var(--text)">
+          <i class="fas fa-gavel" style="margin-right:12px;color:#6366f1"></i>Legal Information
+        </h1>
+        <p class="small" style="color:var(--muted);margin-bottom:32px">Last updated: <span id="legalDate"></span></p>
+
+        <div class="legal-tabs">
+          <button class="legal-tab active" data-tab="privacy">
+            <i class="fas fa-shield-alt"></i> Privacy Policy
+          </button>
+          <button class="legal-tab" data-tab="terms">
+            <i class="fas fa-file-contract"></i> Terms of Service
+          </button>
+        </div>
+
+        <!-- Privacy Policy Content -->
+        <div id="privacy-content" class="legal-content active">
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">1. Introduction</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              Welcome to TranquilMind. We are committed to protecting your privacy and ensuring the security of your personal information. 
+              This Privacy Policy explains how we collect, use, store, and protect your data when you use our mental health awareness and support platform.
+            </p>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              By using TranquilMind, you consent to the collection and use of information in accordance with this policy.
+            </p>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">2. Information We Collect</h2>
+            <h3 style="font-size:clamp(18px,3.5vw,20px);margin:16px 0 12px 0;color:var(--text)">2.1 Account Information</h3>
+            <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li>Email address (for account creation and authentication)</li>
+              <li>User ID (automatically generated)</li>
+              <li>Account creation and last login timestamps</li>
+            </ul>
+
+            <h3 style="font-size:clamp(18px,3.5vw,20px);margin:16px 0 12px 0;color:var(--text)">2.2 Health and Wellness Data</h3>
+            <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li><strong>Mood Entries:</strong> Mood values (0-10 scale) and optional notes you choose to record</li>
+              <li><strong>Journal Entries:</strong> Journal content, titles, and folder organization you create</li>
+              <li><strong>Chat Messages:</strong> Messages exchanged with our AI chat assistant</li>
+            </ul>
+
+            <h3 style="font-size:clamp(18px,3.5vw,20px);margin:16px 0 12px 0;color:var(--text)">2.3 Technical Information</h3>
+            <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li>Browser type and version</li>
+              <li>Device information (if available)</li>
+              <li>IP address (for security and analytics)</li>
+              <li>Usage patterns and feature interactions</li>
+            </ul>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">3. How We Use Your Information</h2>
+            <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li><strong>Service Provision:</strong> To provide and maintain our mental health support services</li>
+              <li><strong>Personalization:</strong> To customize your experience and provide relevant resources</li>
+              <li><strong>Data Storage:</strong> To securely store your mood entries, journal entries, and chat history</li>
+              <li><strong>Security:</strong> To protect against fraud, unauthorized access, and security threats</li>
+              <li><strong>Improvement:</strong> To analyze usage patterns and improve our services (anonymized data)</li>
+              <li><strong>Communication:</strong> To send important service updates and notifications</li>
+            </ul>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">4. Data Storage and Security</h2>
+            <h3 style="font-size:clamp(18px,3.5vw,20px);margin:16px 0 12px 0;color:var(--text)">4.1 Data Storage</h3>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              Your data is stored securely using <strong>Supabase</strong>, a HIPAA-eligible cloud platform with enterprise-grade security. 
+              All data is encrypted in transit and at rest.
+            </p>
+
+            <h3 style="font-size:clamp(18px,3.5vw,20px);margin:16px 0 12px 0;color:var(--text)">4.2 Security Measures</h3>
+            <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li>Row Level Security (RLS) policies ensure users can only access their own data</li>
+              <li>Encrypted database connections (SSL/TLS)</li>
+              <li>Secure authentication using industry-standard protocols</li>
+              <li>Regular security audits and updates</li>
+              <li>Access controls and authentication requirements</li>
+            </ul>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">5. Data Sharing and Disclosure</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              <strong>We do not sell, rent, or share your personal information with third parties</strong> except in the following circumstances:
+            </p>
+            <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li><strong>Service Providers:</strong> We use Supabase for data storage and authentication. They are bound by strict data protection agreements.</li>
+              <li><strong>AI Services:</strong> Chat messages may be processed by OpenRouter AI services to generate responses. Messages are not stored by third-party AI providers.</li>
+              <li><strong>Legal Requirements:</strong> We may disclose information if required by law or to protect our rights and safety.</li>
+              <li><strong>Emergency Situations:</strong> If we believe there is imminent risk of harm, we may contact emergency services (see Terms of Service).</li>
+            </ul>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">6. Your Rights</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              You have the following rights regarding your personal data:
+            </p>
+            <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li><strong>Access:</strong> Request a copy of your personal data</li>
+              <li><strong>Correction:</strong> Update or correct inaccurate information</li>
+              <li><strong>Deletion:</strong> Request deletion of your account and all associated data</li>
+              <li><strong>Export:</strong> Export your data in a portable format</li>
+              <li><strong>Withdrawal:</strong> Withdraw consent for data processing (may limit service functionality)</li>
+            </ul>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              To exercise these rights, please contact us or use the account deletion feature in your settings.
+            </p>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">7. Data Retention</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              We retain your data for as long as your account is active or as needed to provide services. 
+              If you delete your account, we will delete your personal data within 30 days, except where we are required to retain it by law.
+            </p>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">8. Children's Privacy</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              TranquilMind is not intended for users under the age of 13. We do not knowingly collect personal information from children under 13. 
+              If you believe we have collected information from a child under 13, please contact us immediately.
+            </p>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">9. Changes to This Policy</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page 
+              and updating the "Last updated" date. Your continued use of the service after changes constitutes acceptance of the updated policy.
+            </p>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">10. Contact Us</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              If you have questions or concerns about this Privacy Policy or our data practices, please contact us through the 
+              <a href="resources.html" style="color:#6366f1;text-decoration:none">Resources</a> page or your account settings.
+            </p>
+          </section>
+        </div>
+
+        <!-- Terms of Service Content -->
+        <div id="terms-content" class="legal-content">
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">1. Acceptance of Terms</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              By accessing and using TranquilMind ("the Service"), you accept and agree to be bound by these Terms of Service. 
+              If you do not agree to these terms, please do not use the Service.
+            </p>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">2. Description of Service</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              TranquilMind is a mental health awareness and support platform that provides:
+            </p>
+            <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li>Mood tracking tools and analytics</li>
+              <li>AI-powered chat support assistant</li>
+              <li>Personal journaling features</li>
+              <li>Educational resources and information</li>
+              <li>Crisis helpline information and resources</li>
+            </ul>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">3. Medical Disclaimer</h2>
+            <div style="background:rgba(239,68,68,0.1);border-left:4px solid #ef4444;padding:16px;margin:16px 0;border-radius:8px">
+              <p style="margin:0;line-height:1.8;color:var(--text);font-weight:500">
+                <strong>⚠️ IMPORTANT:</strong> TranquilMind is <strong>NOT</strong> a substitute for professional medical advice, diagnosis, or treatment.
+              </p>
+            </div>
+            <ul style="margin:16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li>The Service provides informational and supportive resources only</li>
+              <li>Our AI chat assistant is not a licensed therapist or medical professional</li>
+              <li>Always seek the advice of qualified health providers with any questions regarding mental health</li>
+              <li>Never disregard professional medical advice or delay seeking it because of information on this platform</li>
+              <li>In case of a medical emergency, call your local emergency number immediately</li>
+            </ul>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">4. Emergency Situations</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              If you are experiencing a mental health emergency or crisis:
+            </p>
+            <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li><strong>Call 911</strong> (or your local emergency number) immediately</li>
+              <li>Contact the <strong>National Suicide Prevention Lifeline: 988</strong></li>
+              <li>Text <strong>HOME to 741741</strong> for Crisis Text Line support</li>
+              <li>Visit the <a href="resources.html#helpline" style="color:#6366f1;text-decoration:none">Resources & Helpline</a> page for more resources</li>
+            </ul>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              If we detect content indicating imminent risk of self-harm, we reserve the right to contact emergency services 
+              using available information to ensure your safety.
+            </p>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">5. User Accounts and Responsibilities</h2>
+            <h3 style="font-size:clamp(18px,3.5vw,20px);margin:16px 0 12px 0;color:var(--text)">5.1 Account Creation</h3>
+            <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li>You must be at least 13 years old to create an account</li>
+              <li>You are responsible for maintaining the confidentiality of your account credentials</li>
+              <li>You agree to provide accurate and current information</li>
+              <li>You are responsible for all activities that occur under your account</li>
+            </ul>
+
+            <h3 style="font-size:clamp(18px,3.5vw,20px);margin:16px 0 12px 0;color:var(--text)">5.2 Prohibited Activities</h3>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">You agree NOT to:</p>
+            <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li>Use the Service for any illegal purpose</li>
+              <li>Attempt to gain unauthorized access to the Service or other users' accounts</li>
+              <li>Interfere with or disrupt the Service or servers</li>
+              <li>Transmit viruses, malware, or harmful code</li>
+              <li>Harass, abuse, or harm other users</li>
+              <li>Impersonate any person or entity</li>
+              <li>Collect or store personal data about other users</li>
+            </ul>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">6. Intellectual Property</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              The Service and its original content, features, and functionality are owned by TranquilMind and are protected by 
+              international copyright, trademark, and other intellectual property laws.
+            </p>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              You retain ownership of content you create (journal entries, mood notes, etc.), but grant us a license to store, 
+              process, and display this content as necessary to provide the Service.
+            </p>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">7. Service Availability</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              We strive to provide reliable service but do not guarantee uninterrupted or error-free operation. The Service may be 
+              temporarily unavailable due to maintenance, updates, or unforeseen circumstances. We are not liable for any loss or 
+              inconvenience resulting from service interruptions.
+            </p>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">8. Limitation of Liability</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              To the maximum extent permitted by law:
+            </p>
+            <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
+              <li>TranquilMind is provided "as is" without warranties of any kind</li>
+              <li>We are not liable for any indirect, incidental, or consequential damages</li>
+              <li>We are not responsible for decisions made based on information provided by the Service</li>
+              <li>Our total liability is limited to the amount you paid to use the Service (currently $0 for free service)</li>
+            </ul>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">9. Termination</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              We reserve the right to suspend or terminate your account at any time for violation of these Terms or for any other 
+              reason we deem necessary. You may delete your account at any time through your account settings.
+            </p>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">10. Changes to Terms</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              We may modify these Terms at any time. We will notify users of significant changes. Your continued use of the Service 
+              after changes constitutes acceptance of the updated Terms.
+            </p>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">11. Governing Law</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              These Terms are governed by and construed in accordance with applicable laws. Any disputes will be resolved through 
+              appropriate legal channels.
+            </p>
+          </section>
+
+          <section style="margin-bottom:32px">
+            <h2 style="font-size:clamp(20px,4vw,24px);margin:0 0 16px 0;color:var(--text)">12. Contact Information</h2>
+            <p style="margin:0 0 16px 0;line-height:1.8;color:var(--text)">
+              For questions about these Terms, please contact us through the 
+              <a href="resources.html" style="color:#6366f1;text-decoration:none">Resources</a> page.
+            </p>
+          </section>
+        </div>
+
+        <div style="margin-top:48px;padding-top:24px;border-top:2px solid var(--border);text-align:center">
+          <a href="index.html" class="btn primary" style="display:inline-flex;align-items:center;gap:8px">
+            <i class="fas fa-arrow-left"></i> Back to Home
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div>
+        <strong>TranquilMind</strong>
+        <div class="small">Built with care • Privacy-minded</div>
+      </div>
+      <div class="small" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">
+        <a href="legal.html" style="color:var(--text);text-decoration:none">Privacy Policy</a>
+        <a href="legal.html" style="color:var(--text);text-decoration:none">Terms of Service</a>
+        <span>© <span id="year"></span></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Load environment variables from .env file (if available) -->
+  <script src="config.env.js" onerror="console.log('ℹ️ config.env.js not found - using defaults from config.js')"></script>
+  <script src="config.js"></script>
+  <script src="dark-mode.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    // Legal tabs functionality
+    const tabs = document.querySelectorAll('.legal-tab');
+    const contents = document.querySelectorAll('.legal-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetTab = tab.getAttribute('data-tab');
+        
+        // Remove active class from all tabs and contents
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        tab.classList.add('active');
+        document.getElementById(targetTab + '-content').classList.add('active');
+      });
+    });
+
+    // Menu tab toggle
+    const menuTab = document.getElementById('menuTab');
+    const navMenu = document.getElementById('navMenu');
+    
+    function toggleMenu() {
+      if (menuTab && navMenu) {
+        const isActive = navMenu.classList.contains('active');
+        if (isActive) {
+          menuTab.classList.remove('active');
+          navMenu.classList.remove('active');
+        } else {
+          menuTab.classList.add('active');
+          navMenu.classList.add('active');
+        }
+      }
+    }
+    
+    if (menuTab && navMenu) {
+      menuTab.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !menuTab.contains(e.target)) {
+          menuTab.classList.remove('active');
+          navMenu.classList.remove('active');
+        }
+      });
+      
+      navMenu.querySelectorAll('a, button').forEach(link => {
+        link.addEventListener('click', () => {
+          menuTab.classList.remove('active');
+          navMenu.classList.remove('active');
+        });
+      });
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+          menuTab.classList.remove('active');
+          navMenu.classList.remove('active');
+        }
+      });
+    }
+
+    // Set current year and date
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('legalDate').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  </script>
+</body>
+</html>
+
