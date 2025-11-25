@@ -215,7 +215,7 @@
             </p>
             <ul style="margin:0 0 16px 0;padding-left:24px;line-height:1.8;color:var(--text)">
               <li><strong>Service Providers:</strong> We use Supabase for data storage and authentication. They are bound by strict data protection agreements.</li>
-              <li><strong>AI Services:</strong> Chat messages may be processed by OpenRouter AI services to generate responses. Messages are not stored by third-party AI providers.</li>
+              <li><strong>Chat Services:</strong> Chat messages are processed using pattern matching to generate supportive responses. Messages are stored securely in your account.</li>
               <li><strong>Legal Requirements:</strong> We may disclose information if required by law or to protect our rights and safety.</li>
               <li><strong>Emergency Situations:</strong> If we believe there is imminent risk of harm, we may contact emergency services (see Terms of Service).</li>
             </ul>
@@ -440,9 +440,8 @@
   </div>
 
   <!-- Load environment variables from .env file (if available) -->
-  <script src="config.env.js" onerror="console.log('ℹ️ config.env.js not found - using defaults from config.js')"></script>
-  <script src="config.js"></script>
-  <script src="dark-mode.js"></script>
+  <script src="config.env.js" onerror="console.log('ℹ️ config.env.js not found - using defaults from utils.js')"></script>
+  <script src="utils.js"></script>
   <script src="auth.js"></script>
   <script>
     // Legal tabs functionality

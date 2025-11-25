@@ -69,6 +69,7 @@
             <i class="fas fa-book"></i>
             <span>Resources</span>
           </a>
+          <a href="resources.html#helpline">
             <i class="fas fa-phone-alt"></i>
             <span>Helpline</span>
           </a>
@@ -84,27 +85,98 @@
       </nav>
     </header>
 
-    <h1 class="page-title">Chat with Assistant</h1>
-    <p class="small" style="margin-bottom:24px">Get supportive responses and helpful resources. This is a simple assistant — for emergencies, contact local crisis lines.</p>
+    <div class="page-header">
+      <h1 class="page-title">Chat with Assistant</h1>
+      <p class="page-subtitle">Get supportive responses and helpful resources. This is a simple assistant — for emergencies, contact local crisis lines.</p>
+    </div>
 
-    <div style="display:grid;grid-template-columns:1fr 300px;gap:24px;margin-bottom:32px">
-      <div class="card">
-        <div class="chat" id="chatCard">
-          <div class="messages" id="messages">
-            <div class="msg bot">Hello! I'm here to listen and support you. How are you feeling today?</div>
+    <div class="chat-layout">
+      <div class="chat-main">
+        <div class="card chat-container">
+          <div class="chat-header">
+            <div class="chat-header-info">
+              <div class="chat-avatar">
+                <i class="fas fa-robot"></i>
+              </div>
+              <div>
+                <h3 style="margin:0;font-size:16px">Support Assistant</h3>
+                <p class="small" style="margin:0;color:var(--text-secondary)">Always here to listen</p>
+              </div>
+            </div>
+            <div class="chat-status">
+              <span class="status-dot"></span>
+              <span class="small">Online</span>
+            </div>
           </div>
-          <div class="chat-input">
-            <input id="chatInput" placeholder="Say something supportive or ask for resources" />
-            <button class="btn primary" id="sendChat">Send</button>
+          <div class="chat" id="chatCard">
+            <div class="messages" id="messages">
+              <div class="msg bot">
+                <div class="msg-avatar">
+                  <i class="fas fa-robot"></i>
+                </div>
+                <div class="msg-content">
+                  <div class="msg-text">Hello! I'm here to listen and support you. How are you feeling today?</div>
+                  <div class="msg-time">Just now</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="chat-input-container">
+            <div class="quick-actions">
+              <button class="quick-action-btn" data-action="greeting">
+                <i class="fas fa-hand"></i> Greeting
+              </button>
+              <button class="quick-action-btn" data-action="anxiety">
+                <i class="fas fa-heartbeat"></i> Anxiety
+              </button>
+              <button class="quick-action-btn" data-action="stress">
+                <i class="fas fa-cloud"></i> Stress
+              </button>
+              <button class="quick-action-btn" data-action="resources">
+                <i class="fas fa-book"></i> Resources
+              </button>
+            </div>
+            <div class="chat-input">
+              <input id="chatInput" placeholder="Type your message..." />
+              <button class="btn primary chat-send-btn" id="sendChat">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <div>
-        <div class="card" style="text-align:center;padding:24px">
-          <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=300&h=300&fit=crop&q=80&auto=format&ixlib=rb-4.0.3" alt="Pinterest aesthetic inspirational" class="illustration" style="max-width:100%;border-radius:var(--radius);margin-bottom:16px" />
-          <div class="feature-icon" style="margin:0 auto 16px;width:64px;height:64px;font-size:32px"><i class="fas fa-comments"></i></div>
-          <h3 style="margin-bottom:8px">You're not alone</h3>
+      <div class="chat-sidebar">
+        <div class="card chat-info-card">
+          <div class="info-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h3>You're not alone</h3>
           <p class="small">Our assistant is here to provide support, resources, and a listening ear whenever you need it.</p>
+          <div class="info-features">
+            <div class="info-feature">
+              <i class="fas fa-shield-alt"></i>
+              <span>Private & Secure</span>
+            </div>
+            <div class="info-feature">
+              <i class="fas fa-heart"></i>
+              <span>Supportive Responses</span>
+            </div>
+            <div class="info-feature">
+              <i class="fas fa-clock"></i>
+              <span>Available 24/7</span>
+            </div>
+          </div>
+        </div>
+        <div class="card chat-tips-card">
+          <h4 style="margin:0 0 12px 0;display:flex;align-items:center;gap:8px">
+            <i class="fas fa-lightbulb" style="color:#fbbf24"></i>
+            Tips
+          </h4>
+          <ul class="tips-list">
+            <li>Be specific about how you're feeling</li>
+            <li>Ask for resources if you need them</li>
+            <li>Take your time - there's no rush</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -122,91 +194,76 @@
     </footer>
   </div>
 
-  <!-- Auth modal -->
-  <div id="authModal">
-    <div class="auth-modal-wrapper">
-      <div class="auth-sidebar">
-        <div class="auth-sidebar-content">
-          <div class="auth-icon-wrapper">
-            <div class="auth-icon"><i class="fas fa-leaf"></i></div>
-            <div class="auth-icon-glow"></div>
-          </div>
-          <h2 id="sidebarTitle">Welcome Back</h2>
-          <p id="sidebarText">Sign in to continue your wellness journey</p>
-          <div class="auth-features">
-            <div class="auth-feature">
-              <i class="fas fa-shield-alt"></i>
-              <span>Secure & Private</span>
-            </div>
-            <div class="auth-feature">
-              <i class="fas fa-heart"></i>
-              <span>Personalized Care</span>
-            </div>
-            <div class="auth-feature">
-              <i class="fas fa-leaf"></i>
-              <span>Wellness Focused</span>
-            </div>
-          </div>
-        </div>
-        <div class="auth-sidebar-overlay"></div>
-      </div>
-      <div class="auth-content">
-        <button class="close-btn" id="closeAuth" aria-label="Close">
+  <!-- Auth Modal -->
+  <div id="authModal" class="auth-modal">
+    <div class="auth-backdrop" id="authBackdrop"></div>
+    <div class="auth-dialog">
+      <div class="auth-dialog-content">
+        <button class="auth-close" id="closeAuth" aria-label="Close">
           <i class="fas fa-times"></i>
         </button>
+        
         <div class="auth-header">
-          <div class="auth-logo-small">
-            <div class="brand-mark-small">TM</div>
+          <div class="auth-brand">
+            <div class="auth-brand-mark">TM</div>
           </div>
-          <h3 id="authTitle">Sign in</h3>
-          <p class="auth-subtitle" id="authSubtitle">Enter your credentials to continue</p>
+          <h1 id="authTitle" class="auth-title">Welcome Back</h1>
+          <p id="authSubtitle" class="auth-description">Sign in to access your account</p>
         </div>
-        <div id="authError" class="auth-error"></div>
-        <div id="authSuccess" class="auth-success"></div>
-        <form class="auth-form" id="authForm">
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <div class="input-wrapper">
-              <i class="fas fa-envelope input-icon"></i>
-              <input id="email" type="email" placeholder="your.email@example.com" required />
+
+        <div id="authError" class="auth-message auth-error"></div>
+        <div id="authSuccess" class="auth-message auth-success"></div>
+
+        <form id="authForm" class="auth-form">
+          <div class="auth-field">
+            <label for="email" class="auth-label">Email</label>
+            <div class="auth-input-wrapper">
+              <input 
+                id="email" 
+                type="email" 
+                class="auth-input" 
+                placeholder="Enter your email" 
+                required 
+                autocomplete="email"
+              />
             </div>
           </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <div class="input-wrapper">
-              <i class="fas fa-lock input-icon"></i>
-              <input id="password" type="password" placeholder="Enter your password" required />
+
+          <div class="auth-field">
+            <label for="password" class="auth-label">Password</label>
+            <div class="auth-input-wrapper">
+              <input 
+                id="password" 
+                type="password" 
+                class="auth-input" 
+                placeholder="Enter your password" 
+                required 
+                autocomplete="current-password"
+              />
             </div>
           </div>
-          <div class="auth-actions">
-            <button type="submit" id="authAction" class="btn-auth-primary">
-              <span class="btn-text">Sign in</span>
-              <i class="fas fa-arrow-right btn-icon"></i>
-            </button>
-            <div class="auth-divider">
-              <span>or</span>
-            </div>
-            <button type="button" id="authSwitch" class="auth-switch">
-              <span id="authSwitchText">Don't have an account?</span>
-              <strong id="authSwitchAction">Sign up</strong>
-            </button>
-          </div>
+
+          <button type="submit" id="authAction" class="auth-button">
+            <span id="btnText">Sign In</span>
+            <i id="btnIcon" class="fas fa-arrow-right"></i>
+          </button>
         </form>
+
         <div class="auth-footer">
-          <div class="auth-footer-item">
-            <i class="fas fa-shield-alt"></i>
-            <span>Your data is secure and private</span>
-          </div>
+          <p class="auth-switch-text">
+            <span id="authSwitchText">Don't have an account?</span>
+            <button type="button" id="authSwitch" class="auth-link">
+              <span id="authSwitchAction">Sign Up</span>
+            </button>
+          </p>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Load environment variables from .env file (if available) -->
-  <script src="config.env.js" onerror="console.log('ℹ️ config.env.js not found - using defaults from config.js')"></script>
-  <script src="config.js"></script>
-  <script src="dark-mode.js"></script>
-  <script src="consent-modal.js"></script>
+  <script src="config.env.js" onerror="console.log('ℹ️ config.env.js not found - using defaults from utils.js')"></script>
+  <script src="utils.js"></script>
   <script src="auth.js"></script>
   <script src="chat.js"></script>
   <script>
@@ -257,7 +314,34 @@
     
     // Set year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Quick action buttons
+    document.querySelectorAll('.quick-action-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const action = btn.dataset.action;
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendChat');
+        
+        const actions = {
+          greeting: 'Hello, how are you?',
+          anxiety: 'I\'m feeling anxious',
+          stress: 'I\'m stressed out',
+          resources: 'Can you help me find resources?'
+        };
+        
+        if (actions[action] && chatInput) {
+          chatInput.value = actions[action];
+          chatInput.focus();
+          // Trigger send if Enter is pressed or button is clicked
+          setTimeout(() => {
+            if (sendBtn) sendBtn.click();
+          }, 100);
+        }
+      });
+    });
   </script>
 </body>
 </html>
+
+
 

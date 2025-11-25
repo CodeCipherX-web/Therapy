@@ -6,8 +6,7 @@
   "scripts": {
     "start": "npm run load-env && npx serve . -p 4000",
     "dev": "npm run load-env && npx live-server --port=4000 --open=index.html --no-browser",
-    "load-env": "node load-env.js",
-    "backend": "node backend-chat.js"
+    "load-env": "node load-env.js"
   },
   "keywords": [
     "mental-health",

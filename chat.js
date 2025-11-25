@@ -7,6 +7,17 @@ function appendMessage(who, text, isTyping = false) {
   const msg = document.createElement('div');
   msg.className = 'msg ' + (who === 'user' ? 'user' : 'bot');
   
+  // Create message structure with avatar
+  const msgAvatar = document.createElement('div');
+  msgAvatar.className = 'msg-avatar';
+  msgAvatar.innerHTML = who === 'user' ? '<i class="fas fa-user"></i>' : '<i class="fas fa-robot"></i>';
+  
+  const msgContent = document.createElement('div');
+  msgContent.className = 'msg-content';
+  
+  const msgText = document.createElement('div');
+  msgText.className = 'msg-text';
+  
   // Handle multi-line text (preserve line breaks)
   if (text.includes('\n')) {
     const lines = text.split('\n');
@@ -15,12 +26,21 @@ function appendMessage(who, text, isTyping = false) {
         const p = document.createElement('p');
         p.textContent = line;
         p.style.margin = index === 0 ? '0 0 8px 0' : '8px 0';
-        msg.appendChild(p);
+        msgText.appendChild(p);
       }
     });
   } else {
-    msg.textContent = text;
+    msgText.textContent = text;
   }
+  
+  const msgTime = document.createElement('div');
+  msgTime.className = 'msg-time';
+  msgTime.textContent = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  
+  msgContent.appendChild(msgText);
+  msgContent.appendChild(msgTime);
+  msg.appendChild(msgAvatar);
+  msg.appendChild(msgContent);
   
   if (isTyping) {
     msg.classList.add('typing');
@@ -37,7 +57,23 @@ function showTypingIndicator() {
   const typing = document.createElement('div');
   typing.className = 'msg bot typing';
   typing.id = 'typingIndicator';
-  typing.innerHTML = '<span></span><span></span><span></span>';
+  
+  // Create message structure with avatar
+  const msgAvatar = document.createElement('div');
+  msgAvatar.className = 'msg-avatar';
+  msgAvatar.innerHTML = '<i class="fas fa-robot"></i>';
+  
+  const msgContent = document.createElement('div');
+  msgContent.className = 'msg-content';
+  
+  const msgText = document.createElement('div');
+  msgText.className = 'msg-text typing-dots';
+  msgText.innerHTML = '<span></span><span></span><span></span>';
+  
+  msgContent.appendChild(msgText);
+  typing.appendChild(msgAvatar);
+  typing.appendChild(msgContent);
+  
   messages.appendChild(typing);
   typing.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
@@ -49,95 +85,6 @@ function removeTypingIndicator() {
   }
 }
 
-async function generateAIReply(text) {
-  // Backend proxy URL - get from config.js
-  // BACKEND_CHAT_URL is defined in config.js
-  // - Local: http://localhost:3001 (Node.js backend)
-  // - Production: Supabase Edge Function URL
-  const BACKEND_URL = (typeof BACKEND_CHAT_URL !== 'undefined' && BACKEND_CHAT_URL) 
-    ? BACKEND_CHAT_URL 
-    : (typeof window !== 'undefined' && 
-       (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))
-    ? 'http://localhost:3001'
-    : 'https://rgdvmeljlxedhxnkmmgh.supabase.co/functions/v1/chat';
-  
-  try {
-    console.log('🤖 Calling backend chat API at:', BACKEND_URL);
-    console.log('📤 Sending message:', text.substring(0, 50) + '...');
-    const startTime = Date.now();
-    
-    // Add timeout to prevent hanging
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
-    
-    const response = await fetch(`${BACKEND_URL}/backend-chat`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: text
-      }),
-      signal: controller.signal
-    });
-
-    clearTimeout(timeoutId);
-    const responseTime = Date.now() - startTime;
-    console.log(`📥 Response received in ${responseTime}ms, status:`, response.status);
-    
-    if (!response.ok) {
-      let errorText = '';
-      let errorData = null;
-      try {
-        errorText = await response.clone().text();
-        errorData = JSON.parse(errorText);
-        console.error('❌ Backend API error:', response.status, errorData);
-        
-        // Provide specific guidance based on error
-        if (response.status === 404) {
-          console.error('💡 Backend endpoint not found. Check if backend server is running.');
-        } else if (response.status === 500) {
-          console.error('💡 Backend server error. Check backend console for details.');
-          console.error('💡 Make sure OPENROUTER_API_KEY is set in .env file');
-        } else if (response.status === 401) {
-          console.error('💡 Authentication error. Check OPENROUTER_API_KEY in .env file');
-        }
-      } catch (e) {
-        console.error('❌ Backend API error:', response.status, errorText);
-      }
-      throw new Error(`Backend API error: ${response.status} - ${errorData?.error || errorText}`);
-    }
-
-    const data = await response.json();
-    
-    if (data.reply && data.reply.trim()) {
-      console.log('✅✅✅ SUCCESS: Got AI reply from OpenRouter via backend!');
-      console.log('✅ Reply length:', data.reply.length, 'characters');
-      console.log('✅ Reply preview:', data.reply.substring(0, 100) + '...');
-      return data.reply.trim();
-    } else if (data.error) {
-      console.error('❌ Backend returned error:', data.error);
-      throw new Error(data.error);
-    } else {
-      console.warn('⚠️ Unexpected response format:', data);
-      throw new Error('No reply in response');
-    }
-  } catch (error) {
-    if (error.name === 'AbortError') {
-      console.error('❌ Request timeout - backend took too long to respond');
-      console.error('💡 Check if backend server is running and responsive');
-    } else if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-      console.error('❌ Network error - cannot reach backend server');
-      console.error('💡 Make sure the backend server is running: npm run backend');
-      console.error('💡 Or: node backend-chat.js');
-      console.error('💡 Backend should be running on:', BACKEND_URL);
-    } else {
-      console.error('❌ Error calling backend API:', error.message);
-    }
-    console.error('💡 Backend URL being used:', BACKEND_URL);
-    throw error; // Re-throw to be caught by caller
-  }
-}
 
 function generateSupportiveReply(text) {
   // Enhanced pattern matching for better responses
@@ -266,26 +213,8 @@ async function sendChatMessage() {
     // Simulate thinking time for better UX
     await new Promise(resolve => setTimeout(resolve, 800));
     
-    // Generate bot reply - try AI API first, fall back to enhanced responses
-    console.log('🚀 Attempting to get AI reply from OpenRouter via backend...');
-    let reply = null;
-    try {
-      reply = await generateAIReply(text);
-      if (reply && reply.trim()) {
-        console.log('✅✅✅ SUCCESS: Using AI-generated reply from OpenRouter!');
-        console.log('✅ Reply length:', reply.length, 'characters');
-      } else {
-        throw new Error('Empty reply from API');
-      }
-    } catch (error) {
-      console.warn('⚠️ AI API failed, using fallback response');
-      console.warn('⚠️ Error:', error.message);
-      console.warn('💡 To use OpenRouter:');
-      console.warn('   1. Make sure backend server is running: npm run backend');
-      console.warn('   2. Check that OPENROUTER_API_KEY is set in .env file');
-      console.warn('   3. Verify backend is accessible at:', typeof BACKEND_CHAT_URL !== 'undefined' ? BACKEND_CHAT_URL : 'http://localhost:3001');
-      reply = generateSupportiveReply(text);
-    }
+    // Generate bot reply using pattern matching
+    const reply = generateSupportiveReply(text);
     
     removeTypingIndicator();
     appendMessage('bot', reply);
@@ -304,20 +233,8 @@ async function sendChatMessage() {
   } catch (error) {
     console.error('Error sending chat message:', error);
     removeTypingIndicator();
-    // Try to get AI reply even if save fails
-    console.log('🚀 Attempting to get AI reply from OpenRouter (error recovery)...');
-    let reply = null;
-    try {
-      reply = await generateAIReply(text);
-      if (reply && reply.trim()) {
-        console.log('✅ Using AI-generated reply from OpenRouter (error recovery)');
-      } else {
-        throw new Error('Empty reply');
-      }
-    } catch (apiError) {
-      console.warn('⚠️ AI API failed in error recovery, using fallback response');
-      reply = generateSupportiveReply(text);
-    }
+    // Generate fallback reply even if save fails
+    const reply = generateSupportiveReply(text);
     appendMessage('bot', reply);
   }
 }
@@ -338,8 +255,10 @@ function initChat() {
     });
   }
 
-  // Load previous messages if user is signed in
-  loadChatHistory();
+  // Load previous messages if user is signed in (with delay to ensure DOM is ready)
+  setTimeout(() => {
+    loadChatHistory();
+  }, 500);
 }
 
 async function loadChatHistory() {
@@ -371,14 +290,28 @@ async function loadChatHistory() {
       return;
     }
 
-    if (!data) return;
+    if (!data || data.length === 0) return;
 
     const messages = document.getElementById('messages');
     if (!messages) return;
 
+    // Clear the initial welcome message if we have history
+    const initialMsg = messages.querySelector('.msg.bot');
+    if (initialMsg) {
+      const msgText = initialMsg.querySelector('.msg-text');
+      if (msgText && msgText.textContent.includes('Hello! I\'m here to listen')) {
+        initialMsg.remove();
+      }
+    }
+
     data.forEach(msg => {
       appendMessage(msg.is_bot ? 'bot' : 'user', msg.message);
     });
+    
+    // Scroll to bottom after loading
+    setTimeout(() => {
+      messages.scrollTop = messages.scrollHeight;
+    }, 100);
   } catch (error) {
     console.error('Error loading chat history:', error);
   }

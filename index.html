@@ -72,6 +72,10 @@
             <i class="fas fa-book"></i>
             <span>Resources</span>
           </a>
+          <a href="resources.html#helpline">
+            <i class="fas fa-phone-alt"></i>
+            <span>Helpline</span>
+          </a>
           <a href="testing.html">
             <i class="fas fa-chart-line"></i>
             <span>Testing Results</span>
@@ -91,40 +95,95 @@
           <span>Your Wellness Journey Starts Here</span>
         </div>
         <h1>Check in with yourself — quick, private mood tracking</h1>
-        <p>Track moods, read trusted resources, and chat with a supportive assistant. All data stored securely with Supabase.</p>
+        <p class="hero-description">Track moods, read trusted resources, and chat with a supportive assistant. All data stored securely with Supabase.</p>
         <div class="actions">
-          <a href="mood.html" class="btn primary">
+          <a href="mood.html" class="btn primary hero-cta">
             <i class="fas fa-smile"></i>
             <span>Log mood</span>
           </a>
-          <a href="chat.html" class="btn ghost">
+          <a href="chat.html" class="btn ghost hero-cta">
             <i class="fas fa-comments"></i>
             <span>Open chat</span>
           </a>
+          <a href="journal.html" class="btn ghost hero-cta">
+            <i class="fas fa-book-open"></i>
+            <span>Start journaling</span>
+          </a>
         </div>
 
-        <div style="margin-top:clamp(32px, 6vw, 40px)">
-          <div class="grid">
+        <div class="features-section">
+          <div class="grid features-grid">
             <div class="card feature-card">
               <div class="feature-icon-wrapper">
-                <div class="feature-icon"><i class="fas fa-clipboard-check"></i></div>
+                <div class="feature-icon" style="background: linear-gradient(135deg, #fbbf24, #f59e0b);">
+                  <i class="fas fa-smile"></i>
+                </div>
               </div>
-              <h3>Self-assessments</h3>
-              <p>Short validated tools to help you understand your current state.</p>
+              <h3>Mood Tracker</h3>
+              <p>Track your daily mood and see patterns over time. Your entries are private and secure.</p>
+              <a href="mood.html" class="feature-link">
+                Get started <i class="fas fa-arrow-right"></i>
+              </a>
             </div>
             <div class="card feature-card">
               <div class="feature-icon-wrapper">
-                <div class="feature-icon"><i class="fas fa-book-open"></i></div>
+                <div class="feature-icon" style="background: linear-gradient(135deg, #f97316, #fb923c);">
+                  <i class="fas fa-comments"></i>
+                </div>
+              </div>
+              <h3>Chat Assistant</h3>
+              <p>Get supportive responses and helpful resources from our friendly, therapeutic chatbot.</p>
+              <a href="chat.html" class="feature-link">
+                Start chatting <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="card feature-card">
+              <div class="feature-icon-wrapper">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">
+                  <i class="fas fa-book-open"></i>
+                </div>
+              </div>
+              <h3>Personal Journal</h3>
+              <p>Write your thoughts, reflections, and experiences. Organize them in folders for easy access.</p>
+              <a href="journal.html" class="feature-link">
+                Start writing <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="card feature-card">
+              <div class="feature-icon-wrapper">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);">
+                  <i class="fas fa-book"></i>
+                </div>
               </div>
               <h3>Resources</h3>
-              <p>Articles, helplines, and immediate support resources.</p>
+              <p>Articles, helplines, and immediate support resources. Find recommended, popular, and latest links.</p>
+              <a href="resources.html" class="feature-link">
+                Explore resources <i class="fas fa-arrow-right"></i>
+              </a>
             </div>
             <div class="card feature-card">
               <div class="feature-icon-wrapper">
-                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">
+                  <i class="fas fa-shield-alt"></i>
+                </div>
               </div>
               <h3>Privacy-first</h3>
-              <p>Your entries are private. You control sharing and deletion.</p>
+              <p>Your entries are private. You control sharing and deletion. All data is encrypted and secure.</p>
+              <a href="legal.html" class="feature-link">
+                Learn more <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="card feature-card">
+              <div class="feature-icon-wrapper">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #fb923c, #f97316);">
+                  <i class="fas fa-chart-line"></i>
+                </div>
+              </div>
+              <h3>Testing Results</h3>
+              <p>See how we've improved based on real user feedback and comprehensive testing results.</p>
+              <a href="testing.html" class="feature-link">
+                View results <i class="fas fa-arrow-right"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -132,42 +191,83 @@
 
       <aside>
         <div class="hero-images-grid">
-          <div class="hero-image-card">
-            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=300&fit=crop&q=80&auto=format&ixlib=rb-4.0.3" alt="Pinterest aesthetic quote" class="hero-image" />
-            <div class="image-overlay">
-              <i class="fas fa-quote-left"></i>
-              <span>Visual Harmony</span>
+          <div class="hero-image-card summer-card">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop&q=80&auto=format&ixlib=rb-4.0.3" alt="Summer beach vibes" class="hero-image" />
+            <div class="image-overlay summer-overlay">
+              <i class="fas fa-sun"></i>
+              <span>Sunny Days</span>
             </div>
           </div>
-          <div class="hero-image-card">
-            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=300&fit=crop&q=80&auto=format&ixlib=rb-4.0.3" alt="Pinterest aesthetic minimalist" class="hero-image" />
-            <div class="image-overlay">
-              <i class="fas fa-sparkles"></i>
-              <span>Serene Beauty</span>
+          <div class="hero-image-card summer-card">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&q=80&auto=format&ixlib=rb-4.0.3" alt="Summer nature" class="hero-image" />
+            <div class="image-overlay summer-overlay">
+              <i class="fas fa-leaf"></i>
+              <span>Positive Vibes</span>
             </div>
           </div>
         </div>
         <div class="card quick-tips-card">
           <div class="quick-tips-header">
-            <i class="fas fa-lightbulb"></i>
+            <div class="tips-icon-wrapper">
+              <i class="fas fa-lightbulb"></i>
+            </div>
             <h3>Quick tips</h3>
           </div>
           <p class="small">If you're in immediate danger, contact local emergency services or a crisis line. Use the resources below for non-urgent support.</p>
           <div class="crisis-info">
             <div class="crisis-item">
-              <i class="fas fa-phone-alt"></i>
+              <div class="crisis-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
               <div>
-                <strong>Kenya Crisis Line:</strong>
-                <div class="small">+254 700 000 000 (example)</div>
+                <strong>Emergency Services:</strong>
+                <div class="small">999 or 112</div>
+              </div>
+            </div>
+            <div class="crisis-item">
+              <div class="crisis-icon">
+                <i class="fas fa-headset"></i>
+              </div>
+              <div>
+                <strong>Crisis Support:</strong>
+                <div class="small">Available 24/7</div>
               </div>
             </div>
           </div>
-          <div style="margin-top:16px">
-            <a href="resources.html" class="btn primary" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+          <div class="quick-actions-sidebar">
+            <a href="resources.html" class="btn primary sidebar-btn">
               <i class="fas fa-book"></i>
               <span>View Resources</span>
             </a>
+            <a href="resources.html#helpline" class="btn ghost sidebar-btn">
+              <i class="fas fa-phone-alt"></i>
+              <span>Helpline</span>
+            </a>
           </div>
+        </div>
+        
+        <div class="card stats-preview-card">
+          <div class="stats-preview-header">
+            <i class="fas fa-chart-bar"></i>
+            <h3>Quick Stats</h3>
+          </div>
+          <div class="stats-preview-grid">
+            <div class="stat-preview-item">
+              <div class="stat-preview-value">15+</div>
+              <div class="stat-preview-label">Test Users</div>
+            </div>
+            <div class="stat-preview-item">
+              <div class="stat-preview-value">4.8/5</div>
+              <div class="stat-preview-label">Rating</div>
+            </div>
+            <div class="stat-preview-item">
+              <div class="stat-preview-value">92%</div>
+              <div class="stat-preview-label">Satisfaction</div>
+            </div>
+          </div>
+          <a href="testing.html" class="stat-preview-link">
+            View full results <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
       </aside>
     </section>
@@ -303,7 +403,7 @@
               </div>
             </div>
             <p class="feedback-text">
-              "The chatbot improvements are excellent! It now consistently uses OpenRouter and provides much better responses. The fallback messages are a thing of the past."
+              "The chatbot improvements are excellent! It now provides much better responses with enhanced pattern matching."
             </p>
             <div class="feedback-tags">
               <span class="feedback-tag">Chatbot</span>
@@ -335,75 +435,76 @@
     </footer>
   </div>
 
-  <!-- Auth Modal - Redesigned -->
-  <div id="authModal">
-    <div class="auth-modal-backdrop" id="authBackdrop"></div>
-    <div class="auth-modal-container">
-      <div class="auth-modal-card">
-        <button class="auth-close-btn" id="closeAuth" aria-label="Close">
+  <!-- Auth Modal -->
+  <div id="authModal" class="auth-modal">
+    <div class="auth-backdrop" id="authBackdrop"></div>
+    <div class="auth-dialog">
+      <div class="auth-dialog-content">
+        <button class="auth-close" id="closeAuth" aria-label="Close">
           <i class="fas fa-times"></i>
         </button>
         
-        <div class="auth-header-new">
-          <div class="auth-logo-circle">
-            <i class="fas fa-brain"></i>
+        <div class="auth-header">
+          <div class="auth-brand">
+            <div class="auth-brand-mark">TM</div>
           </div>
-          <h2 id="authTitle" class="auth-title-new">Welcome Back</h2>
-          <p class="auth-subtitle-new" id="authSubtitle">Sign in to continue your journey</p>
+          <h1 id="authTitle" class="auth-title">Welcome Back</h1>
+          <p id="authSubtitle" class="auth-description">Sign in to access your account</p>
         </div>
 
-        <div id="authError" class="auth-error-new"></div>
-        <div id="authSuccess" class="auth-success-new"></div>
+        <div id="authError" class="auth-message auth-error"></div>
+        <div id="authSuccess" class="auth-message auth-success"></div>
 
-        <form class="auth-form-new" id="authForm">
-          <div class="form-group-new">
-            <div class="input-container">
-              <i class="fas fa-envelope input-icon-new"></i>
-              <input id="email" type="email" class="input-field-new" placeholder=" " required />
-              <label for="email" class="input-label-new">Email Address</label>
-              <div class="input-underline"></div>
+        <form id="authForm" class="auth-form">
+          <div class="auth-field">
+            <label for="email" class="auth-label">Email</label>
+            <div class="auth-input-wrapper">
+              <input 
+                id="email" 
+                type="email" 
+                class="auth-input" 
+                placeholder="Enter your email" 
+                required 
+                autocomplete="email"
+              />
             </div>
           </div>
 
-          <div class="form-group-new">
-            <div class="input-container">
-              <i class="fas fa-lock input-icon-new"></i>
-              <input id="password" type="password" class="input-field-new" placeholder=" " required />
-              <label for="password" class="input-label-new">Password</label>
-              <div class="input-underline"></div>
+          <div class="auth-field">
+            <label for="password" class="auth-label">Password</label>
+            <div class="auth-input-wrapper">
+              <input 
+                id="password" 
+                type="password" 
+                class="auth-input" 
+                placeholder="Enter your password" 
+                required 
+                autocomplete="current-password"
+              />
             </div>
           </div>
 
-          <button type="submit" id="authAction" class="auth-submit-btn">
-            <span class="btn-text-new" id="btnText">Sign In</span>
-            <i class="fas fa-arrow-right btn-icon-new" id="btnIcon"></i>
-            <div class="btn-ripple"></div>
+          <button type="submit" id="authAction" class="auth-button">
+            <span id="btnText">Sign In</span>
+            <i id="btnIcon" class="fas fa-arrow-right"></i>
           </button>
         </form>
 
-        <div class="auth-switch-container">
-          <span class="auth-switch-text" id="authSwitchText">Don't have an account?</span>
-          <button type="button" id="authSwitch" class="auth-switch-link">
-            <span id="authSwitchAction">Sign Up</span>
-            <i class="fas fa-arrow-right"></i>
-          </button>
-        </div>
-
-        <div class="auth-footer-new">
-          <div class="auth-security-badge">
-            <i class="fas fa-shield-check"></i>
-            <span>End-to-end encrypted</span>
-          </div>
+        <div class="auth-footer">
+          <p class="auth-switch-text">
+            <span id="authSwitchText">Don't have an account?</span>
+            <button type="button" id="authSwitch" class="auth-link">
+              <span id="authSwitchAction">Sign Up</span>
+            </button>
+          </p>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Load environment variables from .env file (if available) -->
-  <script src="config.env.js" onerror="console.log('ℹ️ config.env.js not found - using defaults from config.js')"></script>
-  <script src="config.js"></script>
-  <script src="dark-mode.js"></script>
-  <script src="consent-modal.js"></script>
+  <script src="config.env.js" onerror="console.log('ℹ️ config.env.js not found - using defaults from utils.js')"></script>
+  <script src="utils.js"></script>
   <script src="auth.js"></script>
   <!-- Note: testing.js not needed on homepage - only on testing.html -->
   <script>

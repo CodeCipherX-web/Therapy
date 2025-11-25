@@ -222,17 +222,116 @@ END;
 $$ language 'plpgsql';
 
 -- ============================================
+-- 8. REVIEWS TABLE
+-- ============================================
+CREATE TABLE IF NOT EXISTS reviews (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
+  rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+  review_text TEXT NOT NULL,
+  user_name TEXT, -- Optional: user can choose to display name or remain anonymous
+  is_approved BOOLEAN DEFAULT false, -- Admin can approve reviews before they're shown
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Indexes for reviews
+CREATE INDEX IF NOT EXISTS reviews_created_at_idx ON reviews(created_at DESC);
+CREATE INDEX IF NOT EXISTS reviews_rating_idx ON reviews(rating);
+CREATE INDEX IF NOT EXISTS reviews_approved_idx ON reviews(is_approved);
+CREATE INDEX IF NOT EXISTS reviews_user_id_idx ON reviews(user_id);
+
+-- Enable RLS
+ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policies for reviews
+-- Users can view approved reviews (public)
+CREATE POLICY "Anyone can view approved reviews"
+  ON reviews
+  FOR SELECT
+  USING (is_approved = true);
+
+-- Users can insert their own reviews
+CREATE POLICY "Users can insert their own reviews"
+  ON reviews
+  FOR INSERT
+  WITH CHECK (auth.uid() = user_id OR user_id IS NULL);
+
+-- Users can update their own reviews (before approval)
+CREATE POLICY "Users can update their own reviews"
+  ON reviews
+  FOR UPDATE
+  USING (auth.uid() = user_id AND is_approved = false)
+  WITH CHECK (auth.uid() = user_id);
+
+-- Users can delete their own reviews
+CREATE POLICY "Users can delete their own reviews"
+  ON reviews
+  FOR DELETE
+  USING (auth.uid() = user_id);
+
+-- ============================================
+-- 9. SUGGESTIONS/IMPROVEMENTS TABLE
+-- ============================================
+CREATE TABLE IF NOT EXISTS suggestions (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
+  suggestion_text TEXT NOT NULL,
+  category TEXT, -- e.g., 'feature', 'bug', 'ui/ux', 'performance', 'other'
+  user_name TEXT, -- Optional: user can choose to display name or remain anonymous
+  status TEXT DEFAULT 'pending', -- 'pending', 'reviewed', 'in-progress', 'completed', 'rejected'
+  admin_notes TEXT, -- Admin can add notes about the suggestion
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Indexes for suggestions
+CREATE INDEX IF NOT EXISTS suggestions_created_at_idx ON suggestions(created_at DESC);
+CREATE INDEX IF NOT EXISTS suggestions_category_idx ON suggestions(category);
+CREATE INDEX IF NOT EXISTS suggestions_status_idx ON suggestions(status);
+CREATE INDEX IF NOT EXISTS suggestions_user_id_idx ON suggestions(user_id);
+
+-- Enable RLS
+ALTER TABLE suggestions ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policies for suggestions
+-- Users can view their own suggestions
+CREATE POLICY "Users can view their own suggestions"
+  ON suggestions
+  FOR SELECT
+  USING (auth.uid() = user_id);
+
+-- Users can insert their own suggestions
+CREATE POLICY "Users can insert their own suggestions"
+  ON suggestions
+  FOR INSERT
+  WITH CHECK (auth.uid() = user_id OR user_id IS NULL);
+
+-- Users can update their own suggestions (if status is pending)
+CREATE POLICY "Users can update their own suggestions"
+  ON suggestions
+  FOR UPDATE
+  USING (auth.uid() = user_id AND status = 'pending')
+  WITH CHECK (auth.uid() = user_id);
+
+-- Users can delete their own suggestions
+CREATE POLICY "Users can delete their own suggestions"
+  ON suggestions
+  FOR DELETE
+  USING (auth.uid() = user_id);
+
+-- ============================================
 -- SETUP COMPLETE!
 -- ============================================
 -- Your database is now ready to use with:
 -- 1. mood_entries - for mood tracking
 -- 2. chat_messages - for chat history
 -- 3. journals - for journal entries with folders
+-- 4. reviews - for user reviews (with approval system)
+-- 5. suggestions - for user suggestions and improvements
 --
 -- All tables have:
 -- - Row Level Security (RLS) enabled
 -- - Proper indexes for performance
--- - User isolation (users can only see their own data)
+-- - User isolation (users can only see their own data, except approved reviews)
 -- - Automatic timestamp management
 --
 -- To verify everything is set up correctly:

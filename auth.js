@@ -7,7 +7,7 @@ function showError(message) {
   if (errorDiv) {
     errorDiv.textContent = message;
     errorDiv.style.display = 'block';
-    errorDiv.className = 'auth-error-new';
+    errorDiv.className = 'auth-message auth-error';
   }
   if (successDiv) successDiv.style.display = 'none';
 }
@@ -18,7 +18,7 @@ function showSuccess(message) {
   if (successDiv) {
     successDiv.textContent = message;
     successDiv.style.display = 'block';
-    successDiv.className = 'auth-success-new';
+    successDiv.className = 'auth-message auth-success';
   }
   if (errorDiv) errorDiv.style.display = 'none';
 }
@@ -40,16 +40,16 @@ function updateAuthUI() {
   
   if (signingUp) {
     if (authTitle) authTitle.textContent = 'Create Account';
-    if (authSubtitle) authSubtitle.textContent = 'Join us and start your wellness journey';
+    if (authSubtitle) authSubtitle.textContent = 'Start your wellness journey today';
     if (btnText) btnText.textContent = 'Create Account';
-    if (btnIcon) btnIcon.className = 'btn-icon-new fas fa-user-plus';
+    if (btnIcon) btnIcon.className = 'fas fa-user-plus';
     if (authSwitchText) authSwitchText.textContent = 'Already have an account?';
     if (authSwitchAction) authSwitchAction.textContent = 'Sign In';
   } else {
     if (authTitle) authTitle.textContent = 'Welcome Back';
-    if (authSubtitle) authSubtitle.textContent = 'Sign in to continue your journey';
+    if (authSubtitle) authSubtitle.textContent = 'Sign in to access your account';
     if (btnText) btnText.textContent = 'Sign In';
-    if (btnIcon) btnIcon.className = 'btn-icon-new fas fa-arrow-right';
+    if (btnIcon) btnIcon.className = 'fas fa-arrow-right';
     if (authSwitchText) authSwitchText.textContent = 'Don\'t have an account?';
     if (authSwitchAction) authSwitchAction.textContent = 'Sign Up';
   }
@@ -134,7 +134,7 @@ function initAuth() {
       const originalIcon = btnIcon.className;
       authAction.disabled = true;
       btnText.textContent = 'Processing...';
-      btnIcon.className = 'btn-icon-new fas fa-spinner fa-spin';
+      btnIcon.className = 'fas fa-spinner fa-spin';
       
       if (!supabase) {
         showError('Supabase not initialized. Please refresh the page.');

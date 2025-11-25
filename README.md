@@ -133,10 +133,8 @@ To deploy to GitHub Pages with environment variables:
 1. **Set up GitHub Secrets:**
    - Go to your repository → Settings → Secrets and variables → Actions
    - Add the following secrets:
-     - `OPENROUTER_API_KEY`: Your OpenRouter API key (starts with `sk-or-`)
      - `SUPABASE_URL`: Your Supabase project URL (optional, has default)
      - `SUPABASE_ANON_KEY`: Your Supabase anonymous key (optional, has default)
-     - `OPENROUTER_MODEL`: Model to use (optional, defaults to `tngtech/deepseek-r1t2-chimera:free`)
      - `SITE_URL`: Your site URL (optional, defaults to `https://tranquilmind.app`)
 
 2. **Enable GitHub Pages:**
@@ -153,7 +151,7 @@ To deploy to GitHub Pages with environment variables:
 
 ## Notes
 
-- The chat assistant uses OpenRouter API for AI responses, with fallback pattern matching.
+- The chat assistant uses enhanced pattern matching to provide supportive responses.
 - All user data is protected by Row Level Security (RLS) policies.
 - The application works offline for viewing, but requires internet connection for Supabase functionality.
 - Environment variables are loaded from `config.env.js` (generated from `.env` locally or from GitHub Secrets in production).

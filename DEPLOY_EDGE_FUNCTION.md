@@ -19,8 +19,6 @@
 4. **Set Secrets:**
    - Go to Project Settings → Edge Functions → Secrets
    - Add the following secrets:
-     - `OPENROUTER_API_KEY` = your OpenRouter API key
-     - `OPENROUTER_MODEL` = `tngtech/deepseek-r1t2-chimera:free`
      - `SITE_URL` = `https://tranquilmind.app`
 
 5. **Test the function:**
@@ -50,8 +48,6 @@ supabase link --project-ref rgdvmeljlxedhxnkmmgh
 ### Step 4: Set Secrets
 
 ```bash
-supabase secrets set OPENROUTER_API_KEY=your-api-key-here
-supabase secrets set OPENROUTER_MODEL=tngtech/deepseek-r1t2-chimera:free
 supabase secrets set SITE_URL=https://tranquilmind.app
 ```
 
@@ -77,5 +73,4 @@ curl -X POST https://rgdvmeljlxedhxnkmmgh.supabase.co/functions/v1/chat \
 - **Function not found:** Make sure you deployed to the correct project
 - **401 Unauthorized:** Check that your Supabase anon key is correct
 - **500 Error:** Check the function logs in Supabase dashboard
-- **API key error:** Verify secrets are set correctly
 

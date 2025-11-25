@@ -15,56 +15,8 @@ if (typeof window !== 'undefined' && window.ENV_CONFIG) {
 const SUPABASE_URL = envConfig.SUPABASE_URL || 'https://rgdvmeljlxedhxnkmmgh.supabase.co';
 const SUPABASE_ANON_KEY = envConfig.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnZHZtZWxqbHhlZGh4bmttbWdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzNzc0NzUsImV4cCI6MjA3Njk1MzQ3NX0.jUuZSVTXa9NeNAjVvI27SEx_D790I3NLiz1C5AC02mQ';
 
-// ========== AI/CHAT API Configuration ==========
-// NOTE: OpenRouter API key is handled by Node.js backend (backend-chat.js) or Supabase Edge Function
-// The API key is NOT exposed to the frontend for security
-// Backend URL - Auto-detect based on environment
-// - Local development: http://localhost:3001 (Node.js backend)
-// - Production: Supabase Edge Function or configured BACKEND_CHAT_URL
-let BACKEND_CHAT_URL = envConfig.BACKEND_CHAT_URL;
-
-// Auto-detect environment and set backend URL
-if (!BACKEND_CHAT_URL) {
-  // Check if we're on localhost (development)
-  if (typeof window !== 'undefined' && 
-      (window.location.hostname === 'localhost' || 
-       window.location.hostname === '127.0.0.1' ||
-       window.location.hostname === '')) {
-    // Local development - use Node.js backend
-    BACKEND_CHAT_URL = 'http://localhost:3001';
-  } else {
-    // Production - use Supabase Edge Function
-    // Supabase Edge Function URL format: {SUPABASE_URL}/functions/v1/chat
-    BACKEND_CHAT_URL = SUPABASE_URL.replace('/rest/v1', '/functions/v1/chat');
-  }
-}
-
-const OPENROUTER_MODEL = envConfig.OPENROUTER_MODEL || 'tngtech/deepseek-r1t2-chimera:free';
+// ========== CHAT Configuration ==========
 const SITE_URL = envConfig.SITE_URL || 'https://tranquilmind.app';
-
-// Debug: Log configuration status
-if (typeof window !== 'undefined') {
-  console.log('🔑 API Configuration loaded:', {
-    backendUrl: BACKEND_CHAT_URL,
-    model: OPENROUTER_MODEL,
-    siteUrl: SITE_URL,
-    envConfigExists: !!window.ENV_CONFIG
-  });
-  
-  console.log('ℹ️ OpenRouter API key is handled by Node.js backend (backend-chat.js)');
-  console.log('ℹ️ Backend URL:', BACKEND_CHAT_URL);
-  console.log('💡 Make sure backend server is running: npm run backend');
-  console.log('💡 Or: node backend-chat.js');
-}
-
-const CHAT_SYSTEM_PROMPT = `You are a compassionate and empathetic mental health support assistant. Your role is to:
-- Listen actively and validate the user's feelings
-- Provide supportive guidance and coping strategies
-- Encourage professional help when needed
-- Never attempt to provide medical diagnosis or replace professional therapy
-- Maintain a warm, non-judgmental tone
-- Keep responses concise (2-3 sentences max for chat)
-- Focus on immediate support and wellness techniques`;
 
 
 // Initialize Supabase client

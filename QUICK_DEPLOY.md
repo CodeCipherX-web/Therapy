@@ -21,14 +21,6 @@ Since CLI installation has issues on Windows, use the dashboard:
 2. Add these secrets (click "Add secret" for each):
 
    **Secret 1:**
-   - Name: `OPENROUTER_API_KEY`
-   - Value: Your OpenRouter API key
-
-   **Secret 2:**
-   - Name: `OPENROUTER_MODEL`
-   - Value: `tngtech/deepseek-r1t2-chimera:free`
-
-   **Secret 3:**
    - Name: `SITE_URL`
    - Value: `https://tranquilmind.app`
 
@@ -63,8 +55,6 @@ scoop install supabase
 # Then follow the CLI deployment steps
 supabase login
 supabase link --project-ref rgdvmeljlxedhxnkmmgh
-supabase secrets set OPENROUTER_API_KEY=your-key-here
-supabase secrets set OPENROUTER_MODEL=tngtech/deepseek-r1t2-chimera:free
 supabase secrets set SITE_URL=https://tranquilmind.app
 supabase functions deploy chat
 ```
@@ -73,9 +63,7 @@ supabase functions deploy chat
 
 ## ✅ After Deployment
 
-Once deployed, your chatbot will automatically:
-- Use Supabase Edge Function in production (GitHub Pages)
-- Use local Node.js backend when running on localhost
+Once deployed, your chatbot will use enhanced pattern matching to provide supportive responses.
 
 No code changes needed - it's already configured!
 

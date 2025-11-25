@@ -1,12 +1,11 @@
 # Supabase Edge Function Setup Guide
 
-This guide will help you migrate from the Node.js backend (`backend-chat.js`) to a Supabase Edge Function.
+This guide explains how to set up Supabase Edge Functions for your project.
 
 ## 📋 Prerequisites
 
 1. Supabase account and project
 2. Supabase CLI installed
-3. OpenRouter API key
 
 ## 🚀 Step-by-Step Setup
 
@@ -44,11 +43,9 @@ Find your project ref in Supabase Dashboard → Settings → General → Referen
 
 ### Step 4: Set Environment Secrets
 
-Store your OpenRouter API key and other secrets:
+Store your secrets:
 
 ```bash
-supabase secrets set OPENROUTER_API_KEY=your-key-here
-supabase secrets set OPENROUTER_MODEL=tngtech/deepseek-r1t2-chimera:free
 supabase secrets set SITE_URL=https://tranquilmind.app
 ```
 
@@ -71,26 +68,7 @@ https://YOUR_PROJECT_REF.supabase.co/functions/v1/chat
 
 ### Step 7: Update Frontend Configuration
 
-Update `config.js`:
-
-```javascript
-// OLD (Node.js backend):
-const BACKEND_CHAT_URL = 'http://localhost:3001';
-
-// NEW (Supabase Edge Function):
-const BACKEND_CHAT_URL = 'https://YOUR_PROJECT_REF.supabase.co/functions/v1/chat';
-```
-
-Replace `YOUR_PROJECT_REF` with your actual Supabase project reference ID.
-
-### Step 8: Update Frontend Code
-
-Update `chat.js` to use the new endpoint:
-
-```javascript
-// The function is already set up to use BACKEND_CHAT_URL from config.js
-// Just make sure config.js has the correct Supabase URL
-```
+The chat now uses enhanced pattern matching and doesn't require a backend server or Edge Function. The configuration is already set up in `config.js`.
 
 ### Step 9: Test the Function
 
@@ -114,10 +92,7 @@ supabase functions serve chat
 # http://localhost:54321/functions/v1/chat
 ```
 
-Update `config.js` for local testing:
-```javascript
-const BACKEND_CHAT_URL = 'http://localhost:54321/functions/v1/chat';
-```
+The chat now uses pattern matching and doesn't require a backend server or Edge Function for local testing.
 
 ## 📊 Monitoring
 
@@ -125,28 +100,9 @@ View function logs and metrics in Supabase Dashboard:
 - **Edge Functions** → **chat** → **Logs**
 - **Edge Functions** → **chat** → **Metrics**
 
-## 🗑️ Cleanup (After Migration)
+## 🗑️ Cleanup
 
-Once the Edge Function is working, you can remove:
-
-1. **`backend-chat.js`** - No longer needed
-2. **`dotenv` dependency** from `package.json`:
-   ```json
-   {
-     "dependencies": {
-       // Remove: "dotenv": "^16.0.0"
-     }
-   }
-   ```
-3. **`backend` script** from `package.json`:
-   ```json
-   {
-     "scripts": {
-       // Remove: "backend": "node backend-chat.js"
-     }
-   }
-   ```
-4. **`.env` file** (or remove `OPENROUTER_API_KEY` from it)
+The chat now uses pattern matching and doesn't require a backend server or Edge Function. All backend-related files have been removed.
 
 ## ⚠️ Important Notes
 
@@ -161,9 +117,6 @@ Once the Edge Function is working, you can remove:
 - Check the function name matches: `supabase functions deploy chat`
 - Verify the URL in `config.js` is correct
 
-### API key not found (500)
-- Make sure secrets are set: `supabase secrets list`
-- Redeploy after setting secrets: `supabase functions deploy chat`
 
 ### CORS errors
 - Edge Function already includes CORS headers
@@ -171,7 +124,6 @@ Once the Edge Function is working, you can remove:
 
 ### Function timeout
 - Default timeout is 60 seconds
-- OpenRouter API should respond much faster
 
 ## 📚 Resources
 

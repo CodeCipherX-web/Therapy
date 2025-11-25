@@ -6,7 +6,6 @@ This guide explains how to deploy TranquilMind to GitHub Pages with environment 
 
 - A GitHub repository
 - GitHub Pages enabled
-- OpenRouter API key (get one from https://openrouter.ai/keys)
 
 ## Step 1: Configure GitHub Secrets
 
@@ -14,13 +13,6 @@ This guide explains how to deploy TranquilMind to GitHub Pages with environment 
 2. Navigate to **Settings** → **Secrets and variables** → **Actions**
 3. Click **New repository secret**
 4. Add the following secrets:
-
-### Required Secrets
-
-- **`OPENROUTER_API_KEY`**: Your OpenRouter API key
-  - Get it from: https://openrouter.ai/keys
-  - Format: `sk-or-v1-...`
-  - This is required for the chat AI to work
 
 ### Optional Secrets (with defaults)
 
@@ -31,10 +23,6 @@ This guide explains how to deploy TranquilMind to GitHub Pages with environment 
 - **`SUPABASE_ANON_KEY`**: Your Supabase anonymous key
   - Default: (already set in workflow)
   - Only set if using a different Supabase project
-
-- **`OPENROUTER_MODEL`**: Model to use for chat
-  - Default: `tngtech/deepseek-r1t2-chimera:free`
-  - Change if you want to use a different model
 
 - **`SITE_URL`**: Your site URL
   - Default: `https://tranquilmind.app`
@@ -67,13 +55,6 @@ This guide explains how to deploy TranquilMind to GitHub Pages with environment 
 
 - Make sure GitHub Actions workflow ran successfully
 - Check the **Actions** tab for any errors
-- Verify that `OPENROUTER_API_KEY` secret is set
-
-### API key not working
-
-- Verify the secret name is exactly `OPENROUTER_API_KEY` (case-sensitive)
-- Check that your API key is valid at https://openrouter.ai/keys
-- Ensure the key starts with `sk-or-`
 
 ### Deployment not working
 
@@ -86,7 +67,6 @@ This guide explains how to deploy TranquilMind to GitHub Pages with environment 
 - ✅ Secrets are encrypted and only accessible during workflow runs
 - ✅ `config.env.js` is generated during deployment, not stored in the repo
 - ✅ The file is in `.gitignore` to prevent accidental commits
-- ✅ Your API keys are never exposed in the repository
 
 ## Local Development
 
@@ -95,9 +75,9 @@ For local development, use the `.env` file:
 1. Create a `.env` file in the project root
 2. Add your variables:
    ```
-   OPENROUTER_API_KEY=sk-or-v1-your-key-here
    SUPABASE_URL=https://your-project.supabase.co
    SUPABASE_ANON_KEY=your-anon-key
+   SITE_URL=https://tranquilmind.app
    ```
 3. Run `npm run load-env` to generate `config.env.js`
 4. Start the server with `npm start`
