@@ -207,10 +207,10 @@ function handleSuggestionSubmit(e) {
 
     // Create mailto link
     // IMPORTANT: Replace 'your-email@example.com' with your actual email address
-    const emailAddress = 'your-email@example.com'; // ⚠️ CHANGE THIS TO YOUR EMAIL ADDRESS
+    const emailAddress = 'teddyalvin23@gmail.com'; // ⚠️ CHANGE THIS TO YOUR EMAIL ADDRESS
     
     // Check if email is still placeholder
-    if (emailAddress === 'your-email@example.com') {
+    if (emailAddress === 'teddyalvin23@gmail.com') {
       showMessage('suggestionMessage', '⚠️ Please configure your email address in reviews.js (line 201). Replace "your-email@example.com" with your actual email.', 'error');
       return;
     }

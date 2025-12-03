@@ -1,23 +1,7 @@
-// ========== CONFIG: Load from .env file ===========
-// Environment variables are loaded from config.env.js (generated from .env file)
-// Run: node load-env.js to generate config.env.js from .env
-// If config.env.js doesn't exist, fallback to these default values
-
-// Try to load from config.env.js first (generated from .env file)
-let envConfig = {};
-
-if (typeof window !== 'undefined' && window.ENV_CONFIG) {
-  // Load from generated config.env.js
-  envConfig = window.ENV_CONFIG;
-}
-
-// ========== CONFIG: Supabase credentials ==========
-const SUPABASE_URL = envConfig.SUPABASE_URL || 'https://rgdvmeljlxedhxnkmmgh.supabase.co';
-const SUPABASE_ANON_KEY = envConfig.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnZHZtZWxqbHhlZGh4bmttbWdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzNzc0NzUsImV4cCI6MjA3Njk1MzQ3NX0.jUuZSVTXa9NeNAjVvI27SEx_D790I3NLiz1C5AC02mQ';
-
-// ========== CHAT Configuration ==========
-const SITE_URL = envConfig.SITE_URL || 'https://tranquilmind.app';
-
+// ========== CONFIG: fill these from your Supabase project (do NOT commit keys publicly) ===========
+// Supabase credentials
+const SUPABASE_URL = 'https://rgdvmeljlxedhxnkmmgh.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnZHZtZWxqbHhlZGh4bmttbWdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzNzc0NzUsImV4cCI6MjA3Njk1MzQ3NX0.jUuZSVTXa9NeNAjVvI27SEx_D790I3NLiz1C5AC02mQ';
 
 // Initialize Supabase client
 // The UMD build from CDN exposes the library - wait for it to load
